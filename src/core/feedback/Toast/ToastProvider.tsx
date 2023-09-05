@@ -3,25 +3,19 @@ import {
   Spinner,
   Toast,
   Toaster,
-  ToastIntent,
   ToastTitle,
   ToastTrigger,
   useId,
   useToastController
 } from "@fluentui/react-components";
 import { Dismiss20Regular } from "@fluentui/react-icons";
-import { createContext, PropsWithChildren, useContext } from "react";
-
-export interface ToastFunctions {
-  close: () => void;
-  open: (content: string, intent: ToastIntent) => void;
-}
-
-const ToastFunctionsContext = createContext<ToastFunctions>(null!);
+import { PropsWithChildren } from "react";
+import ToastFunctions from "@/core/feedback/Toast/ToastFunctionsModel.ts";
+import ToastFunctionsContext from "@/core/feedback/Toast/ToastFunctionsContex.ts";
 
 const TOAST_LIMIT = 1;
 
-export function ToastProvider({ children }: PropsWithChildren) {
+export default function ToastProvider({ children }: PropsWithChildren) {
   const toastId = useId();
   const toasterId = useId();
   const { dispatchToast, dismissAllToasts } = useToastController(toasterId);
@@ -53,8 +47,4 @@ export function ToastProvider({ children }: PropsWithChildren) {
       <Toaster id={toastId} toasterId={toasterId} limit={TOAST_LIMIT} />
     </ToastFunctionsContext.Provider>
   );
-}
-
-export function useToast() {
-  return useContext(ToastFunctionsContext);
 }

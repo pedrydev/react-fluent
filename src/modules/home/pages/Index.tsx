@@ -1,10 +1,10 @@
 import { Button, Label, Radio, RadioGroup, RadioGroupProps, ToastIntent } from "@fluentui/react-components";
 import { useEffect, useState } from "react";
-import { useToast } from "@/core/feedback/Toast.tsx";
 import TrackEvent from "@/core/track/TrackEvent.tsx";
 import { useService } from "@/core/providers/ServiceProvider.tsx";
 import LoggerService from "@/core/services/LoggerService.ts";
 import JsonPlaceholderTodoService from "@/modules/home/services/JsonPlaceholderTodoService.ts";
+import useToast from "@/core/feedback/Toast/useToast.ts";
 
 export default function HomeIndex() {
   const toast = useToast();
