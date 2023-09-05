@@ -22,6 +22,7 @@ const ToastFunctionsContext = createContext<ToastFunctions>(null!);
 const TOAST_LIMIT = 1;
 
 export function ToastProvider({ children }: PropsWithChildren) {
+  const toastId = useId();
   const toasterId = useId();
   const { dispatchToast, dismissAllToasts } = useToastController(toasterId);
   const functions: ToastFunctions = {
@@ -29,6 +30,7 @@ export function ToastProvider({ children }: PropsWithChildren) {
       dismissAllToasts();
     },
     open: (content, intent) => {
+      dismissAllToasts();
       dispatchToast(
         <Toast>
           <ToastTitle
@@ -48,7 +50,7 @@ export function ToastProvider({ children }: PropsWithChildren) {
   return (
     <ToastFunctionsContext.Provider value={functions}>
       {children}
-      <Toaster toasterId={toasterId} limit={TOAST_LIMIT} />
+      <Toaster id={toastId} toasterId={toasterId} limit={TOAST_LIMIT} />
     </ToastFunctionsContext.Provider>
   );
 }
