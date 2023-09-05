@@ -10,8 +10,8 @@ import {
 } from "@fluentui/react-components";
 import { Dismiss20Regular } from "@fluentui/react-icons";
 import { PropsWithChildren } from "react";
-import ToastFunctions from "@/core/feedback/Toast/ToastFunctionsModel.ts";
-import ToastFunctionsContext from "@/core/feedback/Toast/ToastFunctionsContex.ts";
+import ToastFunctions from "@/core/feedback/ToastFunctionsModel.ts";
+import ToastFunctionsContext from "@/core/feedback/ToastFunctionsContex.ts";
 
 const TOAST_LIMIT = 1;
 

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import ToastFunctions from "@/core/feedback/Toast/ToastFunctionsModel.ts";
+import ToastFunctions from "@/core/feedback/ToastFunctionsModel.ts";
 
 const ToastFunctionsContext = createContext<ToastFunctions>(null!);
 

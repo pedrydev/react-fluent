@@ -1,6 +1,6 @@
 import { Button } from "@fluentui/react-components";
 import { Add24Regular } from "@fluentui/react-icons";
-import { useToast } from "./core/feedback/Toast/ToastProvider.tsx";
+import { useToast } from "./core/feedback/ToastProvider.tsx";
 import NavigationRail from "./core/navigation/NavigationRail.tsx";
 import MainContent from "@/core/layout/MainContent.tsx";
 

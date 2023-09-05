@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "reflect-metadata";
 import AuthProvider from "./core/auth/contexts/AuthProvider.tsx";
-import ToastProvider from "./core/feedback/Toast/ToastProvider.tsx";
+import ToastProvider from "./core/feedback/ToastProvider.tsx";
 import { HelpPathProvider } from "./core/help/HelpPathContext.tsx";
 import I18n from "./core/providers/I18n.tsx";
 import QueryProvider from "./core/providers/QueryProvider.tsx";
