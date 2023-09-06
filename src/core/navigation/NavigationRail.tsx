@@ -13,7 +13,7 @@ export default function NavigationRail({ children }: PropsWithChildren) {
   return (
     <aside
       className={mergeClasses(
-        "h-inherit flex flex-col items-center space-y-1.5 pt-1.5",
+        "h-inherit flex flex-col items-center space-y-2 pt-2",
         styles.root
       )}
     >

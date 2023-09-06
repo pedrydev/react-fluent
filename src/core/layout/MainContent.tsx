@@ -3,7 +3,7 @@ import { Spinner } from "@fluentui/react-components";
 
 export default function MainContent({ children }: PropsWithChildren<unknown>) {
   return (
-    <div className="flex-1 p-1.5">
+    <div className="flex-1 px-4 py-2">
       <Suspense
         fallback={
           <div className="flex justify-center">
