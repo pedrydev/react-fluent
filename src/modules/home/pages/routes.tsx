@@ -10,6 +10,7 @@ const FormExample = lazy(() => import("./FormExample"));
 const LineChartExample = lazy(() => import("./LineChartExample"));
 const Charts = lazy(() => import("./Charts"));
 const Index = lazy(() => import("./Index"));
+const TableExample = lazy(() => import("@/modules/home/pages/TableExample.tsx"));
 
 const configs: RouteConfig[] = [
   {
@@ -55,6 +56,11 @@ const configs: RouteConfig[] = [
         path: "line"
       }
     ]
+  },
+  {
+    element: <TableExample />,
+    path: "table",
+    parents: ["HomeLayout"]
   }
 ];
 
