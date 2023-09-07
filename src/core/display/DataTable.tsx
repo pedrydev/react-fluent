@@ -13,6 +13,7 @@ import {
   MenuPopover,
   MenuTrigger,
   mergeClasses,
+  Select,
   Subtitle1,
   Table,
   TableBody,
@@ -49,11 +50,17 @@ export type SelectionAction<T extends TableData> = Omit<TableRowAction, "onClick
   onClick: (selected: T[]) => void
 }
 
+export interface PageSize {
+  setValue: (value: number) => void;
+  options: number[];
+  value: number;
+}
+
 export interface Pagination {
   onPrev: () => void;
   onNext: () => void;
   page: number;
-  pageSize?: number;
+  pageSize: PageSize;
   total: number;
 }
 
@@ -69,8 +76,6 @@ export interface TableProps<T extends TableData> {
   standalone?: boolean;
   title?: string;
 }
-
-const DEFAULT_PAGE_SIZE = 10;
 
 const useStyles = makeStyles({
   actionCell: {
@@ -110,7 +115,6 @@ export default function DataTable<T extends TableData>({
   const [sortBy, setSortBy] = useState("");
   const [sortForward, { toggle }] = useToggle(true);
 
-  const pageSize = pagination?.pageSize ?? DEFAULT_PAGE_SIZE;
   let spanAllColumns = visibleColumns.column.length;
   if (selectable) spanAllColumns++;
   if (onExpand) spanAllColumns++;
@@ -124,6 +128,12 @@ export default function DataTable<T extends TableData>({
       return true;
 
     return "mixed";
+  };
+
+  const getLastPage = () => {
+    // @ts-ignore
+    const lastPage = (pagination.total / pagination.pageSize.value).toFixed(0);
+    return lastPage === "0" ? "1" : lastPage;
   };
 
   const handleHeaderCellClick = (column: TableColumn<T>) => {
@@ -278,7 +288,16 @@ export default function DataTable<T extends TableData>({
           <TableRow>
             <TableCell colSpan={spanAllColumns}>
               <div className="flex items-center justify-end space-x-2">
-                <Body1>{pagination.page} - {(pagination.total / pageSize).toFixed(0)} Total: {pagination.total}</Body1>
+                <Select
+                  onChange={(_, data) => pagination.pageSize.setValue(parseInt(data.value))}
+                  size="small"
+                  value={pagination.pageSize.value}
+                >
+                  {pagination.pageSize.options.map(o => (
+                    <option key={o} value={o}>{o}</option>
+                  ))}
+                </Select>
+                <Body1>{pagination.page} - {getLastPage()} Total: {pagination.total}</Body1>
                 <Button
                   appearance="transparent"
                   disabled={pagination.page === 1}
@@ -287,7 +306,7 @@ export default function DataTable<T extends TableData>({
                   size="small" />
                 <Button
                   appearance="transparent"
-                  disabled={pagination.page.toString() === (pagination.total / pageSize).toFixed(0)}
+                  disabled={pagination.page.toString() === (pagination.total / pagination.pageSize.value).toFixed(0)}
                   icon={<ArrowRight16Regular />}
                   onClick={pagination.onNext}
                   size="small" />

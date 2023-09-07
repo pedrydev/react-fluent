@@ -15,6 +15,7 @@ import DataTable, { TableColumn, TableData } from "@/core/display/DataTable.tsx"
 import TextFilter from "@/core/filters/TextFilter.tsx";
 import useFilterChips from "@/core/filters/useFilterChips.ts";
 import { useState } from "react";
+import usePageSize from "@/core/display/usePageSize.ts";
 
 interface Product extends TableData {
   name: string;
@@ -134,6 +135,7 @@ const columns: TableColumn<Product>[] = [
 export default function TableExample() {
   const [filtersOpen, { toggle }] = useToggle();
   const [page, setPage] = useState(1);
+  const pageSize = usePageSize(5, [5, 10, 20]);
   const filterChipList = useFilterChips();
   const filterChipOptions: FilterChipInputOption[] = [
     {
@@ -196,7 +198,7 @@ export default function TableExample() {
         )}
         pagination={{
           page,
-          pageSize: 5,
+          pageSize,
           onPrev: () => setPage(page - 1),
           onNext: () => setPage(page + 1),
           total: products.length
