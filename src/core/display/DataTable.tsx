@@ -189,7 +189,7 @@ export default function DataTable<T extends TableData>({
             {getRowActions && (
               <TableCell className={mergeClasses(styles.headerCell, styles.actionCell)} key="actions">
                 {selectionActions.length > 0 && selected.length > 0 && (
-                  <Menu positioning={{ position: "below", align: "end", offset: { mainAxis: 6, crossAxis: 12 } }}>
+                  <Menu positioning={{ position: "below", align: "end", offset: { mainAxis: 6 } }}>
                     <FloatingBadge count={selected.length}>
                       <MenuTrigger disableButtonEnhancement>
                         <Button
@@ -241,7 +241,7 @@ export default function DataTable<T extends TableData>({
                 ))}
                 {getRowActions && (
                   <TableCell className={styles.actionCell} key={`${r.id}-actions`}>
-                    <Menu positioning={{ position: "below", align: "end", offset: { mainAxis: 6, crossAxis: 12 } }}>
+                    <Menu positioning={{ position: "below", align: "end", offset: { mainAxis: 6 } }}>
                       <MenuTrigger disableButtonEnhancement>
                         <Button
                           appearance="primary"
