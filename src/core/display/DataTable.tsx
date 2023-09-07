@@ -9,7 +9,7 @@ import {
   MenuTrigger,
   mergeClasses,
   Subtitle1,
-  Table as FTable,
+  Table,
   TableBody,
   TableCell,
   TableHeader,
@@ -17,11 +17,10 @@ import {
   TableRow,
   tokens
 } from "@fluentui/react-components";
-import { Settings20Regular } from "@fluentui/react-icons";
-import { ReactNode, useState } from "react";
+import { ArrowDown16Regular, ArrowRight16Regular, Settings20Regular } from "@fluentui/react-icons";
+import { Fragment, ReactNode, useState } from "react";
 import { useToggle } from "ahooks";
 import useUniqueList from "@/core/form/useUniqueList.ts";
-import { FluentIcon } from "@fluentui/react-icons/lib/utils/createFluentIcon";
 import FloatingBadge from "@/core/display/FloatingBadge.tsx";
 
 export type TableData = { id: string } & {
@@ -36,7 +35,7 @@ export interface TableColumn<T extends TableData> {
 }
 
 export interface TableRowAction {
-  Icon: FluentIcon;
+  icon: ReactNode;
   label: string;
   onClick: () => void;
 }
@@ -48,6 +47,7 @@ export type SelectionAction<T extends TableData> = Omit<TableRowAction, "onClick
 export interface TableProps<T extends TableData> {
   getRowActions?: (model: T) => TableRowAction[];
   columns: TableColumn<T>[];
+  onExpand?: (model: T) => ReactNode;
   rows: T[];
   secondaryActions?: ReactNode;
   selectable?: boolean;
@@ -74,16 +74,17 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Table<T extends TableData>({
-                                                     getRowActions,
-                                                     columns,
-                                                     rows,
-                                                     standalone = true,
-                                                     secondaryActions = null,
-                                                     selectable,
-                                                     selectionActions = [],
-                                                     title
-                                                   }: TableProps<T>) {
+export default function DataTable<T extends TableData>({
+                                                         getRowActions,
+                                                         columns,
+                                                         onExpand,
+                                                         rows,
+                                                         standalone = true,
+                                                         secondaryActions = null,
+                                                         selectable,
+                                                         selectionActions = [],
+                                                         title
+                                                       }: TableProps<T>) {
   const styles = useStyles();
 
   const {
@@ -91,8 +92,14 @@ export default function Table<T extends TableData>({
     addOrRemove: toggleVisibleColumn
   } = useUniqueList({ initSelected: columns.map(c => c.key) });
   const { state: selected, setState: setSelected, addOrRemove: toggleSelected } = useUniqueList<T>({});
+  const { state: expanded, addOrRemove: toggleExpanded } = useUniqueList<string>({});
   const [sortBy, setSortBy] = useState("");
   const [sortForward, { toggle }] = useToggle(true);
+
+  let spanAllColumns = columns.length;
+  if (selectable) spanAllColumns++;
+  if (onExpand) spanAllColumns++;
+  if (getRowActions) spanAllColumns++;
 
   const isAllSeelcted = () => {
     if (selected.length === 0)
@@ -128,7 +135,7 @@ export default function Table<T extends TableData>({
         </div>
         {secondaryActions}
       </header>
-      <FTable>
+      <Table>
         <TableHeader className={styles.header}>
           <TableRow>
             {selectable && (
@@ -139,6 +146,7 @@ export default function Table<T extends TableData>({
                 />
               </TableCell>
             )}
+            {onExpand && <TableHeaderCell className={mergeClasses(styles.headerCell, styles.actionCell)} />}
             {columns.filter(c => visibleColumns.includes(c.key)).map(c => (
               <TableHeaderCell
                 className={styles.headerCell}
@@ -166,7 +174,7 @@ export default function Table<T extends TableData>({
                     <MenuPopover>
                       <MenuList>
                         {selectionActions.map(sa => (
-                          <MenuItem key={`${sa.label}-selection-action`} icon={<sa.Icon />}>
+                          <MenuItem key={`${sa.label}-selection-action`} icon={sa.icon}>
                             {sa.label}
                           </MenuItem>
                         ))}
@@ -180,44 +188,64 @@ export default function Table<T extends TableData>({
         </TableHeader>
         <TableBody>
           {rows.map(r => (
-            <TableRow key={r.id}>
-              {selectable && (
-                <TableCell className={styles.actionCell} key="select">
-                  <Checkbox checked={selected.some(s => s.id === r.id)} onClick={() => toggleSelected(r)} />
-                </TableCell>
+            <Fragment key={r.id}>
+              <TableRow>
+                {selectable && (
+                  <TableCell className={styles.actionCell} key="select">
+                    <Checkbox checked={selected.some(s => s.id === r.id)} onClick={() => toggleSelected(r)} />
+                  </TableCell>
+                )}
+                {onExpand && (
+                  <TableCell className={styles.actionCell} key="expandRow">
+                    <Button
+                      appearance={expanded.includes(r.id) ? "primary" : undefined}
+                      icon={expanded.includes(r.id) ? <ArrowDown16Regular /> : <ArrowRight16Regular />}
+                      onClick={() => toggleExpanded(r.id)}
+                      shape="rounded"
+                      size="small"
+                      title="Expand row" />
+                  </TableCell>
+                )}
+                {columns.filter(c => visibleColumns.includes(c.key)).map(c => (
+                  <TableCell key={`${r.id}-${c.key.toString()}`}>
+                    {r[c.key]}
+                  </TableCell>
+                ))}
+                {getRowActions && (
+                  <TableCell className={styles.actionCell} key={`${r.id}-actions`}>
+                    <Menu positioning={{ position: "below", align: "end", offset: { mainAxis: 6, crossAxis: 12 } }}>
+                      <MenuTrigger disableButtonEnhancement>
+                        <Button
+                          appearance="primary"
+                          icon={<Settings20Regular />}
+                          shape="circular"
+                          size="small"
+                          title="Actions" />
+                      </MenuTrigger>
+                      <MenuPopover>
+                        <MenuList>
+                          {getRowActions(r).map(a => (
+                            <MenuItem key={`${r.id}-action-${a.label}`} icon={a.icon} onClick={() => a.onClick()}>
+                              {a.label}
+                            </MenuItem>
+                          ))}
+                        </MenuList>
+                      </MenuPopover>
+                    </Menu>
+                  </TableCell>
+                )}
+              </TableRow>
+              {expanded.includes(r.id) && (
+                <TableRow>
+                  <TableCell colSpan={spanAllColumns}>
+                    {onExpand(r)}
+                  </TableCell>
+                </TableRow>
               )}
-              {columns.filter(c => visibleColumns.includes(c.key)).map(c => (
-                <TableCell key={`${r.id}-${c.key.toString()}`}>
-                  {r[c.key]}
-                </TableCell>
-              ))}
-              {getRowActions && (
-                <TableCell className={styles.actionCell} key={`${r.id}-actions`}>
-                  <Menu positioning={{ position: "below", align: "end", offset: { mainAxis: 6, crossAxis: 12 } }}>
-                    <MenuTrigger disableButtonEnhancement>
-                      <Button
-                        appearance="primary"
-                        icon={<Settings20Regular />}
-                        shape="circular"
-                        size="small"
-                        title="Actions" />
-                    </MenuTrigger>
-                    <MenuPopover>
-                      <MenuList>
-                        {getRowActions(r).map(a => (
-                          <MenuItem key={`${r.id}-action-${a.label}`} icon={<a.Icon />} onClick={() => a.onClick()}>
-                            {a.label}
-                          </MenuItem>
-                        ))}
-                      </MenuList>
-                    </MenuPopover>
-                  </Menu>
-                </TableCell>
-              )}
-            </TableRow>
+            </Fragment>
           ))}
         </TableBody>
-      </FTable>
+      </Table>
     </section>
   );
 }

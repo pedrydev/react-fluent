@@ -11,7 +11,7 @@ import {
 } from "@fluentui/react-icons";
 import { useToggle } from "ahooks";
 import FilterChipInput, { FilterChipInputOption } from "@/core/filters/FilterChipInput.tsx";
-import Table, { TableColumn, TableData } from "@/core/display/Table.tsx";
+import DataTable, { TableColumn, TableData } from "@/core/display/DataTable.tsx";
 import TextFilter from "@/core/filters/TextFilter.tsx";
 import useFilterChips from "@/core/filters/useFilterChips.ts";
 
@@ -141,13 +141,16 @@ export default function TableExample() {
         onRemove={filterChipList.remove}
         onUpdate={filterChipList.update}
       />
-      <Table
+      <DataTable
         columns={columns}
         getRowActions={(model) => [{
-          Icon: Edit16Regular,
+          icon: <Edit16Regular />,
           label: "Edit",
           onClick: () => console.info(`Editing ${model.name}`)
         }]}
+        onExpand={model => (
+          <span>Hi from product {model.name}</span>
+        )}
         secondaryActions={(
           <div className="flex space-x-2">
             <Button icon={<Add24Regular />} shape="circular" title="Add" />
@@ -157,7 +160,7 @@ export default function TableExample() {
         selectable
         selectionActions={[
           {
-            Icon: Delete20Regular,
+            icon: <Delete20Regular />,
             label: "Delete",
             onClick: console.log
           }
