@@ -18,7 +18,7 @@ const FloatingBadge = forwardRef<HTMLDivElement, PropsWithChildren<FloatingBadge
     {children}
     <CounterBadge
       appearance="filled"
-      className="-top-2 right-3 absolute"
+      className="-top-3 right-2 absolute"
       color="danger"
       count={count}
       ref={badgeRef}
