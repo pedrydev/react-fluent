@@ -2,9 +2,12 @@ import {
   Body1,
   Button,
   Checkbox,
+  Input,
   makeStyles,
   Menu,
+  MenuDivider,
   MenuItem,
+  MenuItemCheckbox,
   MenuList,
   MenuPopover,
   MenuTrigger,
@@ -100,17 +103,15 @@ export default function DataTable<T extends TableData>({
                                                        }: TableProps<T>) {
   const styles = useStyles();
 
-  const {
-    state: visibleColumns,
-    addOrRemove: toggleVisibleColumn
-  } = useUniqueList({ initSelected: columns.map(c => c.key) });
+  const [visibleColumns, setVisibleColumns] = useState<Record<string, string[]>>({ column: columns.map(c => c.label) });
+  const [columnSearch, setColumnSearch] = useState("");
   const { state: selected, setState: setSelected, addOrRemove: toggleSelected } = useUniqueList<T>({});
   const { state: expanded, addOrRemove: toggleExpanded } = useUniqueList<string>({});
   const [sortBy, setSortBy] = useState("");
   const [sortForward, { toggle }] = useToggle(true);
 
   const pageSize = pagination?.pageSize ?? DEFAULT_PAGE_SIZE;
-  let spanAllColumns = columns.length;
+  let spanAllColumns = visibleColumns.column.length;
   if (selectable) spanAllColumns++;
   if (onExpand) spanAllColumns++;
   if (getRowActions) spanAllColumns++;
@@ -136,18 +137,32 @@ export default function DataTable<T extends TableData>({
   return (
     <section className={`bg-white ${standalone && "shadow-md"}`}>
       <header className="p-2 flex justify-between">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center">
           {title && <Subtitle1 className={styles.title}>{title}</Subtitle1>}
-          {columns.map(c => (
-            <Checkbox
-              key={c.key.toString()}
-              checked={visibleColumns.includes(c.key)}
-              label={c.label}
-              onClick={() => toggleVisibleColumn(c.key)}
-            />
-          ))}
         </div>
-        {secondaryActions}
+        <div className="flex items-center space-x-2">
+          <Menu positioning={{ position: "below", align: "end", offset: { mainAxis: 6 } }}>
+            <MenuTrigger disableButtonEnhancement>
+              <Button>{visibleColumns.column.length} selected columns</Button>
+            </MenuTrigger>
+            <MenuPopover>
+              <MenuList
+                checkedValues={visibleColumns}
+                onCheckedValueChange={(_, { checkedItems }) => setVisibleColumns({ column: checkedItems })}
+              >
+                <Input
+                  onChange={(_, data) => setColumnSearch(data.value)}
+                  placeholder="Filter by name"
+                  value={columnSearch} />
+                <MenuDivider />
+                {columns.filter(c => c.label.toLowerCase().includes(columnSearch.toLowerCase())).map(c => (
+                  <MenuItemCheckbox key={c.label} name="column" value={c.label}>{c.label}</MenuItemCheckbox>
+                ))}
+              </MenuList>
+            </MenuPopover>
+          </Menu>
+          {secondaryActions}
+        </div>
       </header>
       <Table>
         <TableHeader className={styles.header}>
@@ -161,7 +176,7 @@ export default function DataTable<T extends TableData>({
               </TableCell>
             )}
             {onExpand && <TableHeaderCell className={mergeClasses(styles.headerCell, styles.actionCell)} />}
-            {columns.filter(c => visibleColumns.includes(c.key)).map(c => (
+            {columns.filter(c => visibleColumns.column.includes(c.label)).map(c => (
               <TableHeaderCell
                 className={styles.headerCell}
                 key={c.key.toString()}
@@ -219,7 +234,7 @@ export default function DataTable<T extends TableData>({
                       title="Expand row" />
                   </TableCell>
                 )}
-                {columns.filter(c => visibleColumns.includes(c.key)).map(c => (
+                {columns.filter(c => visibleColumns.column.includes(c.label)).map(c => (
                   <TableCell key={`${r.id}-${c.key.toString()}`}>
                     {r[c.key]}
                   </TableCell>
