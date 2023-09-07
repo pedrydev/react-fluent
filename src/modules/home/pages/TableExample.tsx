@@ -14,6 +14,7 @@ import FilterChipInput, { FilterChipInputOption } from "@/core/filters/FilterChi
 import DataTable, { TableColumn, TableData } from "@/core/display/DataTable.tsx";
 import TextFilter from "@/core/filters/TextFilter.tsx";
 import useFilterChips from "@/core/filters/useFilterChips.ts";
+import { useState } from "react";
 
 interface Product extends TableData {
   name: string;
@@ -63,6 +64,46 @@ const products: Product[] = [
     price: 500,
     supplier: "Supplier 5",
     category: "Cateogory 5"
+  },
+  {
+    id: "6",
+    name: "Product 6",
+    rating: 6,
+    price: 600,
+    supplier: "Supplier 6",
+    category: "Cateogory 6"
+  },
+  {
+    id: "7",
+    name: "Product 7",
+    rating: 7,
+    price: 700,
+    supplier: "Supplier 7",
+    category: "Cateogory 7"
+  },
+  {
+    id: "8",
+    name: "Product 8",
+    rating: 8,
+    price: 800,
+    supplier: "Supplier 8",
+    category: "Cateogory 8"
+  },
+  {
+    id: "9",
+    name: "Product 9",
+    rating: 9,
+    price: 900,
+    supplier: "Supplier 9",
+    category: "Cateogory 9"
+  },
+  {
+    id: "10",
+    name: "Product 10",
+    rating: 10,
+    price: 1000,
+    supplier: "Supplier 10",
+    category: "Cateogory 10"
   }
 ];
 
@@ -92,6 +133,7 @@ const columns: TableColumn<Product>[] = [
 
 export default function TableExample() {
   const [filtersOpen, { toggle }] = useToggle();
+  const [page, setPage] = useState(1);
   const filterChipList = useFilterChips();
   const filterChipOptions: FilterChipInputOption[] = [
     {
@@ -151,6 +193,13 @@ export default function TableExample() {
         onExpand={model => (
           <span>Hi from product {model.name}</span>
         )}
+        pagination={{
+          page,
+          pageSize: 5,
+          onPrev: () => setPage(page - 1),
+          onNext: () => setPage(page + 1),
+          total: products.length
+        }}
         secondaryActions={(
           <div className="flex space-x-2">
             <Button icon={<Add24Regular />} shape="circular" title="Add" />
@@ -166,7 +215,7 @@ export default function TableExample() {
           }
         ]}
         title="Example table"
-        rows={products}
+        rows={products.slice((page - 1) * 5, page * 5)}
       />
     </div>
   );

@@ -1,4 +1,5 @@
 import {
+  Body1,
   Button,
   Checkbox,
   makeStyles,
@@ -17,7 +18,7 @@ import {
   TableRow,
   tokens
 } from "@fluentui/react-components";
-import { ArrowDown16Regular, ArrowRight16Regular, Settings20Regular } from "@fluentui/react-icons";
+import { ArrowDown16Regular, ArrowLeft16Regular, ArrowRight16Regular, Settings20Regular } from "@fluentui/react-icons";
 import { Fragment, ReactNode, useState } from "react";
 import { useToggle } from "ahooks";
 import useUniqueList from "@/core/form/useUniqueList.ts";
@@ -44,17 +45,28 @@ export type SelectionAction<T extends TableData> = Omit<TableRowAction, "onClick
   onClick: (selected: T[]) => void
 }
 
+export interface Pagination {
+  onPrev: () => void;
+  onNext: () => void;
+  page: number;
+  pageSize?: number;
+  total: number;
+}
+
 export interface TableProps<T extends TableData> {
   getRowActions?: (model: T) => TableRowAction[];
   columns: TableColumn<T>[];
   onExpand?: (model: T) => ReactNode;
   rows: T[];
+  pagination?: Pagination;
   secondaryActions?: ReactNode;
   selectable?: boolean;
   selectionActions?: SelectionAction<T>[];
   standalone?: boolean;
   title?: string;
 }
+
+const DEFAULT_PAGE_SIZE = 10;
 
 const useStyles = makeStyles({
   actionCell: {
@@ -78,6 +90,7 @@ export default function DataTable<T extends TableData>({
                                                          getRowActions,
                                                          columns,
                                                          onExpand,
+                                                         pagination,
                                                          rows,
                                                          standalone = true,
                                                          secondaryActions = null,
@@ -96,6 +109,7 @@ export default function DataTable<T extends TableData>({
   const [sortBy, setSortBy] = useState("");
   const [sortForward, { toggle }] = useToggle(true);
 
+  const pageSize = pagination?.pageSize ?? DEFAULT_PAGE_SIZE;
   let spanAllColumns = columns.length;
   if (selectable) spanAllColumns++;
   if (onExpand) spanAllColumns++;
@@ -201,7 +215,6 @@ export default function DataTable<T extends TableData>({
                       appearance={expanded.includes(r.id) ? "primary" : undefined}
                       icon={expanded.includes(r.id) ? <ArrowDown16Regular /> : <ArrowRight16Regular />}
                       onClick={() => toggleExpanded(r.id)}
-                      shape="rounded"
                       size="small"
                       title="Expand row" />
                   </TableCell>
@@ -245,6 +258,29 @@ export default function DataTable<T extends TableData>({
             </Fragment>
           ))}
         </TableBody>
+        {pagination && (
+          <tfoot>
+          <TableRow>
+            <TableCell colSpan={spanAllColumns}>
+              <div className="flex items-center justify-end space-x-2">
+                <Body1>{pagination.page} - {(pagination.total / pageSize).toFixed(0)} Total: {pagination.total}</Body1>
+                <Button
+                  appearance="transparent"
+                  disabled={pagination.page === 1}
+                  icon={<ArrowLeft16Regular />}
+                  onClick={pagination.onPrev}
+                  size="small" />
+                <Button
+                  appearance="transparent"
+                  disabled={pagination.page.toString() === (pagination.total / pageSize).toFixed(0)}
+                  icon={<ArrowRight16Regular />}
+                  onClick={pagination.onNext}
+                  size="small" />
+              </div>
+            </TableCell>
+          </TableRow>
+          </tfoot>
+        )}
       </Table>
     </section>
   );
