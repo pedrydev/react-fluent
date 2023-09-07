@@ -113,8 +113,15 @@ export default function FilterChipInput({
             >
               <Body1Stronger>{c.label}: </Body1Stronger>
               <Body1>{c.value}</Body1>
-              <Button appearance="subtle" icon={<Dismiss12Regular />} onClick={() => onRemove(c)} shape="circular"
-                      size="small" />
+              <Button
+                appearance="subtle"
+                icon={<Dismiss12Regular />}
+                onClick={(ev) => {
+                  ev.stopPropagation();
+                  onRemove(c);
+                }}
+                shape="circular"
+                size="small" />
             </div>
           ))}
         </div>
