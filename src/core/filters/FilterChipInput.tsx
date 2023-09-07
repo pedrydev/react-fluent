@@ -1,5 +1,14 @@
-import { Body1, Body1Stronger, Button, Field, makeStyles, Select, tokens } from "@fluentui/react-components";
-import { Add24Regular, Dismiss12Regular } from "@fluentui/react-icons";
+import {
+  Body1,
+  Body1Stronger,
+  Button,
+  Field,
+  makeStyles,
+  Select,
+  shorthands,
+  tokens
+} from "@fluentui/react-components";
+import { Add24Regular, BinRecycle24Regular, Dismiss12Regular } from "@fluentui/react-icons";
 import { ReactNode, useState } from "react";
 import FilterChipModel from "@/core/filters/FilterChipModel.ts";
 import { CurrentFilterChipContext, FilterChipFunctionsContexts } from "@/core/filters/FilterChipContexts.ts";
@@ -14,6 +23,7 @@ export interface FilterChipInputProps {
   options: FilterChipInputOption[];
   onAdd: (model: FilterChipModel) => void;
   onRemove: (model: FilterChipModel) => void;
+  onRemoveAll: () => void;
   onUpdate: (model: FilterChipModel) => void;
 }
 
@@ -25,13 +35,16 @@ const useStyles = makeStyles({
       width: "auto"
     },
     "& select": {
-      borderTopRightRadius: "0px",
-      borderBottomRightRadius: "0px"
+      ...shorthands.borderRadius("0px")
     }
   },
   addChipButton: {
     borderTopLeftRadius: "0px",
     borderBottomLeftRadius: "0px"
+  },
+  removeChipsButton: {
+    borderTopRightRadius: "0px",
+    borderBottomRightRadius: "0px"
   },
   chip: {
     backgroundColor: tokens.colorBrandBackground2,
@@ -45,6 +58,7 @@ export default function FilterChipInput({
                                           options,
                                           onAdd,
                                           onRemove,
+                                          onRemoveAll,
                                           onUpdate
                                         }: FilterChipInputProps) {
   const styles = useStyles();
@@ -78,6 +92,13 @@ export default function FilterChipInput({
         <div className="flex space-x-2" key={hidden.toString()}>
           <Field label="Select filter">
             <div className="flex w-fit">
+              <Button
+                className={styles.removeChipsButton}
+                disabled={activeChips.length === 0}
+                icon={<BinRecycle24Regular />}
+                onClick={onRemoveAll}
+                title="Remove filter chips"
+              />
               <Select
                 className={styles.select}
                 onChange={(_, data) => handleSelectChip(data.value)}

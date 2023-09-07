@@ -181,6 +181,7 @@ export default function TableExample() {
         options={filterChipOptions}
         onAdd={filterChipList.add}
         onRemove={filterChipList.remove}
+        onRemoveAll={filterChipList.removeAll}
         onUpdate={filterChipList.update}
       />
       <DataTable
