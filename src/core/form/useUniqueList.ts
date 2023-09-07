@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const defaultComparisonFunction = <T>(a: T, b: T) => {
   if (a !== null && b !== null) {
-    if (typeof a === 'object' && typeof b === 'object') {
-      if (Object.keys(a).some(k => k === 'id') && Object.keys(b).some(k => k === 'id')) {
+    if (typeof a === "object" && typeof b === "object") {
+      if (Object.keys(a).some(k => k === "id") && Object.keys(b).some(k => k === "id")) {
         // @ts-ignore
         return a.id === b.id;
-      } else if (Object.keys(a).some(k => k === '_id') && Object.keys(b).some(k => k === '_id')) {
+      } else if (Object.keys(a).some(k => k === "_id") && Object.keys(b).some(k => k === "_id")) {
         // @ts-ignore
         return a._id === b._id;
       }
@@ -21,9 +21,9 @@ export interface UseUniqueListArgs<T> {
 }
 
 export default function useUniqueList<T>({
-  initSelected = [],
-  comparisonFunction = defaultComparisonFunction,
-}: UseUniqueListArgs<T>) {
+                                           initSelected = [],
+                                           comparisonFunction = defaultComparisonFunction
+                                         }: UseUniqueListArgs<T>) {
   const [state, setState] = useState<T[]>(initSelected);
 
   const add = (obj: T) => {
@@ -48,7 +48,7 @@ export default function useUniqueList<T>({
 
   const update = (obj: T) => {
     const index = state.findIndex(item => comparisonFunction(item, obj));
-    if (index > 1) setState([...state.slice(0, index), obj, ...state.slice(index + 1)]);
+    if (index > -1) setState([...state.slice(0, index), obj, ...state.slice(index + 1)]);
   };
 
   return {
@@ -59,6 +59,6 @@ export default function useUniqueList<T>({
     setState,
     remove,
     removeMany,
-    update,
+    update
   };
 }
