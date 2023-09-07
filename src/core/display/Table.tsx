@@ -49,6 +49,7 @@ export interface TableProps<T extends TableData> {
   getRowActions?: (model: T) => TableRowAction[];
   columns: TableColumn<T>[];
   rows: T[];
+  secondaryActions?: ReactNode;
   selectable?: boolean;
   selectionActions?: SelectionAction<T>[];
   title?: string;
@@ -76,6 +77,7 @@ export default function Table<T extends TableData>({
                                                      getRowActions,
                                                      columns,
                                                      rows,
+                                                     secondaryActions = null,
                                                      selectable,
                                                      selectionActions = [],
                                                      title
@@ -110,16 +112,19 @@ export default function Table<T extends TableData>({
 
   return (
     <section className="bg-white shadow-md">
-      <header className="p-2 flex items-center space-x-2">
-        {title && <Subtitle1 className={styles.title}>{title}</Subtitle1>}
-        {columns.map(c => (
-          <Checkbox
-            key={c.key.toString()}
-            checked={visibleColumns.includes(c.key)}
-            label={c.label}
-            onClick={() => toggleVisibleColumn(c.key)}
-          />
-        ))}
+      <header className="p-2 flex justify-between">
+        <div className="flex items-center space-x-2">
+          {title && <Subtitle1 className={styles.title}>{title}</Subtitle1>}
+          {columns.map(c => (
+            <Checkbox
+              key={c.key.toString()}
+              checked={visibleColumns.includes(c.key)}
+              label={c.label}
+              onClick={() => toggleVisibleColumn(c.key)}
+            />
+          ))}
+        </div>
+        {secondaryActions}
       </header>
       <FTable>
         <TableHeader className={styles.header}>

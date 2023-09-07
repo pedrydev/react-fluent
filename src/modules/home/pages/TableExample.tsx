@@ -4,6 +4,7 @@ import {
   BinRecycle24Regular,
   Delete20Regular,
   Edit16Regular,
+  EyeTracking24Regular,
   Filter24Regular,
   FilterDismiss24Regular,
   Search24Regular
@@ -131,7 +132,6 @@ export default function TableExample() {
               shape="circular"
               title={filtersOpen ? "Hide filters" : "Show filters"} />
             <Button icon={<BinRecycle24Regular />} shape="circular" title="Clean filters" />
-            <Button icon={<Add24Regular />} shape="circular" title="Add" />
           </div>
         </div>
       </div>
@@ -150,6 +150,12 @@ export default function TableExample() {
           label: "Edit",
           onClick: () => console.info(`Editing ${model.name}`)
         }]}
+        secondaryActions={(
+          <div className="flex space-x-2">
+            <Button icon={<Add24Regular />} shape="circular" title="Add" />
+            <Button icon={<EyeTracking24Regular />} shape="circular" title="Include deleted" />
+          </div>
+        )}
         selectable
         selectionActions={[
           {
