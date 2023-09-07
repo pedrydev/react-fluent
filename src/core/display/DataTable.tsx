@@ -5,6 +5,7 @@ import {
   Input,
   makeStyles,
   Menu,
+  MenuButton,
   MenuDivider,
   MenuItem,
   MenuItemCheckbox,
@@ -74,8 +75,7 @@ const DEFAULT_PAGE_SIZE = 10;
 const useStyles = makeStyles({
   actionCell: {
     cursor: "unset",
-    textAlign: "center",
-    width: "48px"
+    width: "40px"
   },
   header: {
     backgroundColor: tokens.colorNeutralBackground5
@@ -143,7 +143,7 @@ export default function DataTable<T extends TableData>({
         <div className="flex items-center space-x-2">
           <Menu positioning={{ position: "below", align: "end", offset: { mainAxis: 6 } }}>
             <MenuTrigger disableButtonEnhancement>
-              <Button>{visibleColumns.column.length} selected columns</Button>
+              <MenuButton>{visibleColumns.column.length} selected columns</MenuButton>
             </MenuTrigger>
             <MenuPopover>
               <MenuList
@@ -187,7 +187,7 @@ export default function DataTable<T extends TableData>({
               </TableHeaderCell>
             ))}
             {getRowActions && (
-              <TableCell className={mergeClasses(styles.headerCell, styles.actionCell)} key="actions">
+              <TableCell align="center" className={mergeClasses(styles.headerCell, styles.actionCell)} key="actions">
                 {selectionActions.length > 0 && selected.length > 0 && (
                   <Menu positioning={{ position: "below", align: "end", offset: { mainAxis: 6 } }}>
                     <FloatingBadge count={selected.length}>
