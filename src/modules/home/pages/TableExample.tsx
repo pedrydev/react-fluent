@@ -10,10 +10,10 @@ import {
   Search24Regular
 } from "@fluentui/react-icons";
 import { useToggle } from "ahooks";
-import useUniqueList from "@/core/form/useUniqueList.ts";
-import FilterChipInput, { FilterChipInputOption } from "@/core/form/FilterChipInput.tsx";
-import FilterChipModel from "@/core/form/FilterChipModel.ts";
+import FilterChipInput, { FilterChipInputOption } from "@/core/filters/FilterChipInput.tsx";
 import Table, { TableColumn, TableData } from "@/core/display/Table.tsx";
+import TextFilter from "@/core/filters/TextFilter.tsx";
+import useFilterChips from "@/core/filters/useFilterChips.ts";
 
 interface Product extends TableData {
   name: string;
@@ -92,15 +92,13 @@ const columns: TableColumn<Product>[] = [
 
 export default function TableExample() {
   const [filtersOpen, { toggle }] = useToggle();
-  const filterChipList = useUniqueList<FilterChipModel>({});
+  const filterChipList = useFilterChips();
   const filterChipOptions: FilterChipInputOption[] = [
     {
       label: "Test",
       key: "test",
       component: (
-        <Field label="Test">
-          <Input />
-        </Field>
+        <TextFilter />
       )
     }
   ];
@@ -136,7 +134,7 @@ export default function TableExample() {
         </div>
       </div>
       <FilterChipInput
-        activeChips={filterChipList.state}
+        activeChips={filterChipList.filterChips}
         hidden={!filtersOpen}
         options={filterChipOptions}
         onAdd={filterChipList.add}
@@ -156,7 +154,6 @@ export default function TableExample() {
             <Button icon={<EyeTracking24Regular />} shape="circular" title="Include deleted" />
           </div>
         )}
-        standalone={false}
         selectable
         selectionActions={[
           {
