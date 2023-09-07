@@ -156,6 +156,7 @@ export default function TableExample() {
             <Button icon={<EyeTracking24Regular />} shape="circular" title="Include deleted" />
           </div>
         )}
+        standalone={false}
         selectable
         selectionActions={[
           {

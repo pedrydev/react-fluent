@@ -52,6 +52,7 @@ export interface TableProps<T extends TableData> {
   secondaryActions?: ReactNode;
   selectable?: boolean;
   selectionActions?: SelectionAction<T>[];
+  standalone?: boolean;
   title?: string;
 }
 
@@ -77,6 +78,7 @@ export default function Table<T extends TableData>({
                                                      getRowActions,
                                                      columns,
                                                      rows,
+                                                     standalone = true,
                                                      secondaryActions = null,
                                                      selectable,
                                                      selectionActions = [],
@@ -111,7 +113,7 @@ export default function Table<T extends TableData>({
   };
 
   return (
-    <section className="bg-white shadow-md">
+    <section className={`bg-white ${standalone && "shadow-md"}`}>
       <header className="p-2 flex justify-between">
         <div className="flex items-center space-x-2">
           {title && <Subtitle1 className={styles.title}>{title}</Subtitle1>}
