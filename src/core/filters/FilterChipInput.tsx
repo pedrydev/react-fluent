@@ -88,8 +88,12 @@ export default function FilterChipInput({
                   <option key={o.key} value={o.key}>{o.label}</option>
                 ))}
               </Select>
-              <Button className={styles.addChipButton} icon={<Add24Regular />} onClick={handleAddChip}
-                      title="Add filter" />
+              <Button
+                className={styles.addChipButton}
+                disabled={selectedChip === undefined}
+                icon={<Add24Regular />}
+                onClick={handleAddChip}
+                title="Add filter" />
             </div>
           </Field>
           <FilterChipFunctionsContexts.Provider value={{ update: setSelectedChip }}>
