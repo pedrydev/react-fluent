@@ -18,11 +18,12 @@ const FloatingBadge = forwardRef<HTMLDivElement, PropsWithChildren<FloatingBadge
     {children}
     <CounterBadge
       appearance="filled"
-      className="-top-3 right-2 absolute"
+      className="-top-1 -right-1"
       color="danger"
       count={count}
       ref={badgeRef}
       size="small"
+      style={{ position: "absolute" }}
     />
   </div>
 ));

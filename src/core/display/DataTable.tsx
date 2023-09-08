@@ -80,7 +80,7 @@ export interface TableProps<T extends TableData> {
 const useStyles = makeStyles({
   actionCell: {
     cursor: "unset",
-    width: "40px"
+    width: "28px"
   },
   header: {
     backgroundColor: tokens.colorNeutralBackground5
