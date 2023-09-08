@@ -9,8 +9,8 @@ export interface FloatingBadgeProps {
 const useStyles = makeStyles({
   badge: {
     position: "absolute",
-    right: "0.25rem",
-    top: "0.25rem"
+    right: "-2.5px",
+    top: "-5px"
   }
 });
 
