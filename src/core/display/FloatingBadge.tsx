@@ -1,10 +1,18 @@
 import { forwardRef, PropsWithChildren, Ref } from "react";
-import { CounterBadge } from "@fluentui/react-components";
+import { CounterBadge, makeStyles } from "@fluentui/react-components";
 
 export interface FloatingBadgeProps {
   badgeRef?: Ref<HTMLDivElement>;
   count: number;
 }
+
+const useStyles = makeStyles({
+  badge: {
+    position: "absolute",
+    right: "0.25rem",
+    top: "0.25rem"
+  }
+});
 
 const FloatingBadge = forwardRef<HTMLDivElement, PropsWithChildren<FloatingBadgeProps>>((
   {
@@ -13,19 +21,22 @@ const FloatingBadge = forwardRef<HTMLDivElement, PropsWithChildren<FloatingBadge
     count
   },
   ref
-) => (
-  <div className="relative" ref={ref}>
-    {children}
-    <CounterBadge
-      appearance="filled"
-      className="-top-1 -right-1"
-      color="danger"
-      count={count}
-      ref={badgeRef}
-      size="small"
-      style={{ position: "absolute" }}
-    />
-  </div>
-));
+) => {
+  const styles = useStyles();
+
+  return (
+    <div className="relative" ref={ref}>
+      {children}
+      <CounterBadge
+        appearance="filled"
+        className={styles.badge}
+        color="danger"
+        count={count}
+        ref={badgeRef}
+        size="small"
+      />
+    </div>
+  );
+});
 
 export default FloatingBadge;
