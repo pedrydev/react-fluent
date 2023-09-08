@@ -285,8 +285,8 @@ export default function DataTable<T extends TableData>({
         </TableBody>
         {pagination && (
           <tfoot>
-          <TableRow>
-            <TableCell colSpan={spanAllColumns}>
+          <tr className="h-11">
+            <td className="px-2" colSpan={spanAllColumns}>
               <div className="flex items-center justify-end space-x-2">
                 <Select
                   onChange={(_, data) => pagination.pageSize.setValue(parseInt(data.value))}
@@ -311,8 +311,8 @@ export default function DataTable<T extends TableData>({
                   onClick={pagination.onNext}
                   size="small" />
               </div>
-            </TableCell>
-          </TableRow>
+            </td>
+          </tr>
           </tfoot>
         )}
       </Table>
