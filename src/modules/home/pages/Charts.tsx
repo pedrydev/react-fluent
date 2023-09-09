@@ -1,19 +1,98 @@
-import { Tab, TabList } from "@fluentui/react-components";
-import { Suspense } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { AreaChart, IAreaChartProps, IChartProps, LineChart } from '@fluentui/react-charting';
+
+const lineChartData: IChartProps = {
+  chartTitle: 'Line chart example',
+  lineChartData: [
+    {
+      legend: 'Salary',
+      data: [
+        {
+          x: new Date(2023, 1, 1),
+          y: 12000,
+        },
+        {
+          x: new Date(2023, 2, 1),
+          y: 7000,
+        },
+        {
+          x: new Date(2023, 3, 1),
+          y: 13000,
+        },
+        {
+          x: new Date(2023, 4, 1),
+          y: 15500,
+        },
+        {
+          x: new Date(2023, 5, 1),
+          y: 20000,
+        },
+      ],
+    },
+    {
+      legend: 'Consumed',
+      data: [
+        {
+          x: new Date(2023, 1, 1),
+          y: 7000,
+        },
+        {
+          x: new Date(2023, 2, 1),
+          y: 6500,
+        },
+        {
+          x: new Date(2023, 3, 1),
+          y: 8000,
+        },
+        {
+          x: new Date(2023, 4, 1),
+          y: 5500,
+        },
+        {
+          x: new Date(2023, 5, 1),
+          y: 7000,
+        },
+      ],
+    },
+  ],
+};
+
+const areaChartData: IAreaChartProps['data'] = {
+  chartTitle: 'Area chart example',
+  lineChartData: [
+    {
+      legend: 'Point 1',
+      data: [
+        { x: 1, y: 45 },
+        { x: 2, y: 24 },
+        { x: 3, y: 92 },
+        { x: 4, y: 74 },
+        { x: 5, y: 38 },
+        { x: 6, y: 36 },
+      ],
+    },
+    {
+      legend: 'Point 2',
+      data: [
+        { x: 1, y: 74 },
+        { x: 2, y: 29 },
+        { x: 3, y: 74 },
+        { x: 4, y: 38 },
+        { x: 5, y: 19 },
+        { x: 6, y: 89 },
+      ],
+    },
+  ],
+};
 
 export default function Charts() {
-  const navigate = useNavigate();
   return (
-    <div className="space-y-1.5">
-      <TabList>
-        <Tab onClick={() => navigate("/chart/line")} value="line">Line</Tab>
-        <Tab onClick={() => navigate("/chart/area")} value="area">Area</Tab>
-        <Tab onClick={() => navigate("/chart/bar")} value="bar">Bar</Tab>
-      </TabList>
-      <Suspense>
-        <Outlet />
-      </Suspense>
+    <div className='grid grid-cols-2 gap-4'>
+      <div className='bg-white p-2 shadow-md rounded-md'>
+        <LineChart data={lineChartData} />
+      </div>
+      <div className='bg-white p-2 shadow-md rounded-md'>
+        <AreaChart data={areaChartData} />
+      </div>
     </div>
   );
 }
