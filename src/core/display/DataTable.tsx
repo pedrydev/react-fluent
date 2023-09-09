@@ -121,7 +121,7 @@ export default function DataTable<T extends TableData>({
   if (getRowActions) spanAllColumns++;
 
   const isAllSeelcted = () => {
-    if (selected.length === 0)
+    if (!rows.some(r => selected.some(s => r.id === s.id)))
       return false;
 
     if (rows.every(r => selected.some(s => r.id === s.id)))
@@ -181,7 +181,7 @@ export default function DataTable<T extends TableData>({
               <TableCell className={mergeClasses(styles.headerCell, styles.actionCell)} key="select-all">
                 <Checkbox
                   checked={isAllSeelcted()}
-                  onClick={() => isAllSeelcted() === true ? setSelected([]) : setSelected(rows)}
+                  onClick={() => isAllSeelcted() === true ? setSelected(selected.filter(s => !rows.some(r => s.id === r.id))) : setSelected(selected.concat(rows))}
                 />
               </TableCell>
             )}
