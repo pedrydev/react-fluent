@@ -21,13 +21,13 @@ import {
   TableHeader,
   TableHeaderCell,
   TableRow,
-  tokens
-} from "@fluentui/react-components";
-import { ArrowDown16Regular, ArrowLeft16Regular, ArrowRight16Regular, Settings20Regular } from "@fluentui/react-icons";
-import { Fragment, ReactNode, useState } from "react";
-import { useToggle } from "ahooks";
-import useUniqueList from "@/core/form/useUniqueList.ts";
-import FloatingBadge from "@/core/display/FloatingBadge.tsx";
+  tokens,
+} from '@fluentui/react-components';
+import { ArrowDown16Regular, ArrowLeft16Regular, ArrowRight16Regular, Settings20Regular } from '@fluentui/react-icons';
+import { Fragment, ReactNode, useState } from 'react';
+import { useToggle } from 'ahooks';
+import useUniqueList from '@/core/form/useUniqueList.ts';
+import FloatingBadge from '@/core/display/FloatingBadge.tsx';
 
 export type TableData = { id: string } & {
   [key: string]: string | number | boolean
@@ -46,7 +46,7 @@ export interface TableRowAction {
   onClick: () => void;
 }
 
-export type SelectionAction<T extends TableData> = Omit<TableRowAction, "onClick"> & {
+export type SelectionAction<T extends TableData> = Omit<TableRowAction, 'onClick'> & {
   onClick: (selected: T[]) => void
 }
 
@@ -79,19 +79,19 @@ export interface TableProps<T extends TableData> {
 
 const useStyles = makeStyles({
   actionCell: {
-    cursor: "unset",
-    width: "28px"
+    cursor: 'unset',
+    width: '28px',
   },
   header: {
-    backgroundColor: tokens.colorNeutralBackground5
+    backgroundColor: tokens.colorNeutralBackground5,
   },
   headerCell: {
     color: tokens.colorBrandBackground,
-    cursor: "pointer"
+    cursor: 'pointer',
   },
   title: {
-    height: "32px"
-  }
+    height: '32px',
+  },
 });
 
 export default function DataTable<T extends TableData>({
@@ -104,15 +104,15 @@ export default function DataTable<T extends TableData>({
                                                          secondaryActions = null,
                                                          selectable,
                                                          selectionActions = [],
-                                                         title
+                                                         title,
                                                        }: TableProps<T>) {
   const styles = useStyles();
 
   const [visibleColumns, setVisibleColumns] = useState<Record<string, string[]>>({ column: columns.map(c => c.label) });
-  const [columnSearch, setColumnSearch] = useState("");
+  const [columnSearch, setColumnSearch] = useState('');
   const { state: selected, setState: setSelected, addOrRemove: toggleSelected } = useUniqueList<T>({});
   const { state: expanded, addOrRemove: toggleExpanded } = useUniqueList<string>({});
-  const [sortBy, setSortBy] = useState("");
+  const [sortBy, setSortBy] = useState('');
   const [sortForward, { toggle }] = useToggle(true);
 
   let spanAllColumns = visibleColumns.column.length;
@@ -127,13 +127,13 @@ export default function DataTable<T extends TableData>({
     if (rows.every(r => selected.some(s => r.id === s.id)))
       return true;
 
-    return "mixed";
+    return 'mixed';
   };
 
   const getLastPage = () => {
     // @ts-ignore
     const lastPage = (pagination.total / pagination.pageSize.value).toFixed(0);
-    return lastPage === "0" ? "1" : lastPage;
+    return lastPage === '0' ? '1' : lastPage;
   };
 
   const handleHeaderCellClick = (column: TableColumn<T>) => {
@@ -145,13 +145,13 @@ export default function DataTable<T extends TableData>({
   };
 
   return (
-    <section className={`bg-white ${standalone && "shadow-md"}`}>
-      <header className="p-2 flex justify-between">
-        <div className="flex items-center">
+    <section className={`bg-white ${standalone && 'shadow-md'}`}>
+      <header className='p-2 flex justify-between'>
+        <div className='flex items-center'>
           {title && <Subtitle1 className={styles.title}>{title}</Subtitle1>}
         </div>
-        <div className="flex items-center space-x-2">
-          <Menu positioning={{ position: "below", align: "end", offset: { mainAxis: 6 } }}>
+        <div className='flex items-center space-x-2'>
+          <Menu positioning={{ position: 'below', align: 'end', offset: { mainAxis: 6 } }}>
             <MenuTrigger disableButtonEnhancement>
               <MenuButton>{visibleColumns.column.length} selected columns</MenuButton>
             </MenuTrigger>
@@ -162,11 +162,11 @@ export default function DataTable<T extends TableData>({
               >
                 <Input
                   onChange={(_, data) => setColumnSearch(data.value)}
-                  placeholder="Filter by name"
+                  placeholder='Filter by name'
                   value={columnSearch} />
                 <MenuDivider />
                 {columns.filter(c => c.label.toLowerCase().includes(columnSearch.toLowerCase())).map(c => (
-                  <MenuItemCheckbox key={c.label} name="column" value={c.label}>{c.label}</MenuItemCheckbox>
+                  <MenuItemCheckbox key={c.label} name='column' value={c.label}>{c.label}</MenuItemCheckbox>
                 ))}
               </MenuList>
             </MenuPopover>
@@ -178,7 +178,7 @@ export default function DataTable<T extends TableData>({
         <TableHeader className={styles.header}>
           <TableRow>
             {selectable && (
-              <TableCell className={mergeClasses(styles.headerCell, styles.actionCell)} key="select-all">
+              <TableCell className={mergeClasses(styles.headerCell, styles.actionCell)} key='select-all'>
                 <Checkbox
                   checked={isAllSeelcted()}
                   onClick={() => isAllSeelcted() === true ? setSelected(selected.filter(s => !rows.some(r => s.id === r.id))) : setSelected(selected.concat(rows))}
@@ -191,23 +191,23 @@ export default function DataTable<T extends TableData>({
                 className={styles.headerCell}
                 key={c.key.toString()}
                 onClick={() => handleHeaderCellClick(c)}
-                sortDirection={sortBy !== c.key ? undefined : sortForward ? "descending" : "ascending"}
+                sortDirection={sortBy !== c.key ? undefined : sortForward ? 'descending' : 'ascending'}
               >
-                <span className="d-inline-block mr-2">{c.label}</span>
+                <span className='d-inline-block mr-2'>{c.label}</span>
               </TableHeaderCell>
             ))}
             {getRowActions && (
-              <TableCell align="center" className={mergeClasses(styles.headerCell, styles.actionCell)} key="actions">
+              <TableCell align='center' className={mergeClasses(styles.headerCell, styles.actionCell)} key='actions'>
                 {selectionActions.length > 0 && selected.length > 0 && (
-                  <Menu positioning={{ position: "below", align: "end", offset: { mainAxis: 6 } }}>
+                  <Menu positioning={{ position: 'below', align: 'end', offset: { mainAxis: 6 } }}>
                     <FloatingBadge count={selected.length}>
                       <MenuTrigger disableButtonEnhancement>
                         <Button
-                          appearance="primary"
+                          appearance='primary'
                           icon={<Settings20Regular />}
-                          shape="circular"
-                          size="small"
-                          title="Selection actions" />
+                          shape='rounded'
+                          size='small'
+                          title='Selection actions' />
                       </MenuTrigger>
                     </FloatingBadge>
                     <MenuPopover>
@@ -230,18 +230,18 @@ export default function DataTable<T extends TableData>({
             <Fragment key={r.id}>
               <TableRow>
                 {selectable && (
-                  <TableCell className={styles.actionCell} key="select">
+                  <TableCell className={styles.actionCell} key='select'>
                     <Checkbox checked={selected.some(s => s.id === r.id)} onClick={() => toggleSelected(r)} />
                   </TableCell>
                 )}
                 {onExpand && (
-                  <TableCell className={styles.actionCell} key="expandRow">
+                  <TableCell className={styles.actionCell} key='expandRow'>
                     <Button
-                      appearance={expanded.includes(r.id) ? "primary" : undefined}
+                      appearance={expanded.includes(r.id) ? 'primary' : undefined}
                       icon={expanded.includes(r.id) ? <ArrowDown16Regular /> : <ArrowRight16Regular />}
                       onClick={() => toggleExpanded(r.id)}
-                      size="small"
-                      title="Expand row" />
+                      size='small'
+                      title='Expand row' />
                   </TableCell>
                 )}
                 {columns.filter(c => visibleColumns.column.includes(c.label)).map(c => (
@@ -251,14 +251,14 @@ export default function DataTable<T extends TableData>({
                 ))}
                 {getRowActions && (
                   <TableCell className={styles.actionCell} key={`${r.id}-actions`}>
-                    <Menu positioning={{ position: "below", align: "end", offset: { mainAxis: 6 } }}>
+                    <Menu positioning={{ position: 'below', align: 'end', offset: { mainAxis: 6 } }}>
                       <MenuTrigger disableButtonEnhancement>
                         <Button
-                          appearance="primary"
+                          appearance='primary'
                           icon={<Settings20Regular />}
-                          shape="circular"
-                          size="small"
-                          title="Actions" />
+                          shape='rounded'
+                          size='small'
+                          title='Actions' />
                       </MenuTrigger>
                       <MenuPopover>
                         <MenuList>
@@ -285,12 +285,12 @@ export default function DataTable<T extends TableData>({
         </TableBody>
         {pagination && (
           <tfoot>
-          <tr className="h-11">
-            <td className="px-2" colSpan={spanAllColumns}>
-              <div className="flex items-center justify-end space-x-2">
+          <tr className='h-11'>
+            <td className='px-2' colSpan={spanAllColumns}>
+              <div className='flex items-center justify-end space-x-2'>
                 <Select
                   onChange={(_, data) => pagination.pageSize.setValue(parseInt(data.value))}
-                  size="small"
+                  size='small'
                   value={pagination.pageSize.value}
                 >
                   {pagination.pageSize.options.map(o => (
@@ -299,17 +299,17 @@ export default function DataTable<T extends TableData>({
                 </Select>
                 <Body1>{pagination.page} - {getLastPage()} Total: {pagination.total}</Body1>
                 <Button
-                  appearance="transparent"
+                  appearance='transparent'
                   disabled={pagination.page === 1}
                   icon={<ArrowLeft16Regular />}
                   onClick={pagination.onPrev}
-                  size="small" />
+                  size='small' />
                 <Button
-                  appearance="transparent"
+                  appearance='transparent'
                   disabled={pagination.page.toString() === (pagination.total / pagination.pageSize.value).toFixed(0)}
                   icon={<ArrowRight16Regular />}
                   onClick={pagination.onNext}
-                  size="small" />
+                  size='small' />
               </div>
             </td>
           </tr>

@@ -7,28 +7,28 @@ import {
   DialogSurface,
   DialogTitle,
   DialogTrigger,
-  Spinner
-} from "@fluentui/react-components";
-import { Question24Regular } from "@fluentui/react-icons";
-import useButtonStyles from "@/app-layout/useButtonStyles.ts";
-import useHelp from "@/core/help/useHelp.ts";
+  Spinner,
+} from '@fluentui/react-components';
+import { Question24Regular } from '@fluentui/react-icons';
+import useButtonStyles from '@/app-layout/useButtonStyles.ts';
+import useHelp from '@/core/help/useHelp.ts';
 
 export default function HelpIcon() {
   const { data, isLoading } = useHelp();
   const buttonStyles = useButtonStyles();
 
   if (isLoading)
-    return <Spinner size="tiny" />;
+    return <Spinner size='tiny' />;
 
   return (
     <Dialog>
       <DialogTrigger disableButtonEnhancement>
         <Button
-          appearance="subtle"
+          appearance='subtle'
           className={buttonStyles.button}
           icon={<Question24Regular />}
-          shape="circular"
-          title="Help"
+          shape='rounded'
+          title='Help'
         />
       </DialogTrigger>
       <DialogSurface>
