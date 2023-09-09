@@ -6,12 +6,12 @@ import {
   makeStyles,
   Select,
   shorthands,
-  tokens
-} from "@fluentui/react-components";
-import { Add24Regular, BinRecycle24Regular, Dismiss12Regular } from "@fluentui/react-icons";
-import { ReactNode, useState } from "react";
-import FilterChipModel from "@/core/filters/FilterChipModel.ts";
-import { CurrentFilterChipContext, FilterChipFunctionsContexts } from "@/core/filters/FilterChipContexts.ts";
+  tokens,
+} from '@fluentui/react-components';
+import { Add24Regular, BinRecycle24Regular, Dismiss12Regular } from '@fluentui/react-icons';
+import { ReactNode, useState } from 'react';
+import FilterChipModel from '@/core/filters/FilterChipModel.ts';
+import { CurrentFilterChipContext, FilterChipFunctionsContexts } from '@/core/filters/FilterChipContexts.ts';
 
 export type FilterChipInputOption = FilterChipModel & {
   component: ReactNode
@@ -29,27 +29,27 @@ export interface FilterChipInputProps {
 
 const useStyles = makeStyles({
   select: {
-    width: "100%",
-    "@media (min-width: 768px)": {
-      minWidth: "240px",
-      width: "auto"
+    width: '100%',
+    '@media (min-width: 768px)': {
+      minWidth: '240px',
+      width: 'auto',
     },
-    "& select": {
-      ...shorthands.borderRadius("0px")
-    }
+    '& select': {
+      ...shorthands.borderRadius('0px'),
+    },
   },
   addChipButton: {
-    borderTopLeftRadius: "0px",
-    borderBottomLeftRadius: "0px"
+    borderTopLeftRadius: '0px',
+    borderBottomLeftRadius: '0px',
   },
   removeChipsButton: {
-    borderTopRightRadius: "0px",
-    borderBottomRightRadius: "0px"
+    borderTopRightRadius: '0px',
+    borderBottomRightRadius: '0px',
   },
   chip: {
     backgroundColor: tokens.colorBrandBackground2,
-    color: tokens.colorNeutralForeground2BrandPressed
-  }
+    color: tokens.colorNeutralForeground2BrandPressed,
+  },
 });
 
 export default function FilterChipInput({
@@ -59,11 +59,18 @@ export default function FilterChipInput({
                                           onAdd,
                                           onRemove,
                                           onRemoveAll,
-                                          onUpdate
+                                          onUpdate,
                                         }: FilterChipInputProps) {
   const styles = useStyles();
 
   const [selectedChip, setSelectedChip] = useState<FilterChipModel | undefined>();
+
+  const addChipButtonDisabled = selectedChip === undefined
+    || selectedChip === null
+    || selectedChip.data === undefined
+    || selectedChip.data === ''
+    || selectedChip.value === undefined
+    || selectedChip.value === '';
 
   const handleAddChip = () => {
     if (selectedChip?.data) {
@@ -87,34 +94,34 @@ export default function FilterChipInput({
   };
 
   return (
-    <div className="space-y-2">
+    <div className='space-y-2'>
       {!hidden && (
-        <div className="flex space-x-2" key={hidden.toString()}>
-          <Field label="Select filter">
-            <div className="flex w-fit">
+        <div className='flex space-x-2' key={hidden.toString()}>
+          <Field label='Select filter'>
+            <div className='flex w-fit'>
               <Button
                 className={styles.removeChipsButton}
                 disabled={activeChips.length === 0}
                 icon={<BinRecycle24Regular />}
                 onClick={onRemoveAll}
-                title="Remove filter chips"
+                title='Remove filter chips'
               />
               <Select
                 className={styles.select}
                 onChange={(_, data) => handleSelectChip(data.value)}
-                value={selectedChip?.key ?? ""}
+                value={selectedChip?.key ?? ''}
               >
-                <option value=""></option>
+                <option value=''></option>
                 {options.map(o => (
                   <option key={o.key} value={o.key}>{o.label}</option>
                 ))}
               </Select>
               <Button
                 className={styles.addChipButton}
-                disabled={selectedChip === undefined}
+                disabled={addChipButtonDisabled}
                 icon={<Add24Regular />}
                 onClick={handleAddChip}
-                title="Add filter" />
+                title='Add filter' />
             </div>
           </Field>
           <FilterChipFunctionsContexts.Provider value={{ update: setSelectedChip }}>
@@ -125,7 +132,7 @@ export default function FilterChipInput({
         </div>
       )}
       {activeChips.length > 0 && (
-        <div className="flex space-x-2">
+        <div className='flex space-x-2'>
           {activeChips.map(c => (
             <div
               key={`${c.key}`}
@@ -135,14 +142,14 @@ export default function FilterChipInput({
               <Body1Stronger>{c.label}: </Body1Stronger>
               <Body1>{c.value}</Body1>
               <Button
-                appearance="subtle"
+                appearance='subtle'
                 icon={<Dismiss12Regular />}
                 onClick={(ev) => {
                   ev.stopPropagation();
                   onRemove(c);
                 }}
-                shape="circular"
-                size="small" />
+                shape='circular'
+                size='small' />
             </div>
           ))}
         </div>
