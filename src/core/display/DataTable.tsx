@@ -65,11 +65,12 @@ export interface Pagination {
 }
 
 export interface TableProps<T extends TableData> {
-  getRowActions?: (model: T) => TableRowAction[];
   columns: TableColumn<T>[];
+  getRowActions?: (model: T) => TableRowAction[];
+  hideSelectColumns?: boolean;
   onExpand?: (model: T) => ReactNode;
-  rows: T[];
   pagination?: Pagination;
+  rows: T[];
   secondaryActions?: ReactNode;
   selectable?: boolean;
   selectionActions?: SelectionAction<T>[];
@@ -97,6 +98,7 @@ const useStyles = makeStyles({
 export default function DataTable<T extends TableData>({
                                                          getRowActions,
                                                          columns,
+                                                         hideSelectColumns,
                                                          onExpand,
                                                          pagination,
                                                          rows,
@@ -151,26 +153,28 @@ export default function DataTable<T extends TableData>({
           {title && <Subtitle1 className={styles.title}>{title}</Subtitle1>}
         </div>
         <div className='flex items-center space-x-2'>
-          <Menu positioning={{ position: 'below', align: 'end', offset: { mainAxis: 6 } }}>
-            <MenuTrigger disableButtonEnhancement>
-              <MenuButton>{visibleColumns.column.length} selected columns</MenuButton>
-            </MenuTrigger>
-            <MenuPopover>
-              <MenuList
-                checkedValues={visibleColumns}
-                onCheckedValueChange={(_, { checkedItems }) => setVisibleColumns({ column: checkedItems })}
-              >
-                <Input
-                  onChange={(_, data) => setColumnSearch(data.value)}
-                  placeholder='Filter by name'
-                  value={columnSearch} />
-                <MenuDivider />
-                {columns.filter(c => c.label.toLowerCase().includes(columnSearch.toLowerCase())).map(c => (
-                  <MenuItemCheckbox key={c.label} name='column' value={c.label}>{c.label}</MenuItemCheckbox>
-                ))}
-              </MenuList>
-            </MenuPopover>
-          </Menu>
+          {!hideSelectColumns && (
+            <Menu positioning={{ position: 'below', align: 'end', offset: { mainAxis: 6 } }}>
+              <MenuTrigger disableButtonEnhancement>
+                <MenuButton>{visibleColumns.column.length} selected columns</MenuButton>
+              </MenuTrigger>
+              <MenuPopover>
+                <MenuList
+                  checkedValues={visibleColumns}
+                  onCheckedValueChange={(_, { checkedItems }) => setVisibleColumns({ column: checkedItems })}
+                >
+                  <Input
+                    onChange={(_, data) => setColumnSearch(data.value)}
+                    placeholder='Filter by name'
+                    value={columnSearch} />
+                  <MenuDivider />
+                  {columns.filter(c => c.label.toLowerCase().includes(columnSearch.toLowerCase())).map(c => (
+                    <MenuItemCheckbox key={c.label} name='column' value={c.label}>{c.label}</MenuItemCheckbox>
+                  ))}
+                </MenuList>
+              </MenuPopover>
+            </Menu>
+          )}
           {secondaryActions}
         </div>
       </header>
