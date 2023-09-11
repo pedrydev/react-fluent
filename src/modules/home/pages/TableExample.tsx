@@ -7,6 +7,8 @@ import {
   EyeTracking24Regular,
   Filter24Regular,
   FilterDismiss24Regular,
+  MoreHorizontal16Regular,
+  PreviewLink16Regular,
   Search24Regular,
 } from '@fluentui/react-icons';
 import { useToggle } from 'ahooks';
@@ -119,6 +121,19 @@ const columns: TableColumn<Product>[] = [
     label: 'Categoria',
   },
   {
+    actions: [
+      <Button
+        appearance='subtle'
+        icon={<PreviewLink16Regular />}
+        shape='circular' size='small'
+        title='View supplier' />,
+      <Button
+        appearance='subtle'
+        icon={<MoreHorizontal16Regular />}
+        shape='circular'
+        size='small'
+        title='More' />,
+    ],
     key: 'supplier',
     label: 'Proveedor',
   },

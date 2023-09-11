@@ -18,6 +18,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableCellActions,
   TableHeader,
   TableHeaderCell,
   TableRow,
@@ -34,6 +35,7 @@ export type TableData = { id: string } & {
 }
 
 export interface TableColumn<T extends TableData> {
+  actions?: ReactNode[];
   key: keyof T;
   label: string;
   onSort?: () => void;
@@ -251,6 +253,17 @@ export default function DataTable<T extends TableData>({
                 {columns.filter(c => visibleColumns.column.includes(c.label)).map(c => (
                   <TableCell key={`${r.id}-${c.key.toString()}`}>
                     {r[c.key]}
+                    {c.actions && (
+                      <TableCellActions>
+                        <div className='flex space-x-1'>
+                          {c.actions.map((a, i) => (
+                            <Fragment key={`${r.id}-${c.key.toString()}-action-${i}`}>
+                              {a}
+                            </Fragment>
+                          ))}
+                        </div>
+                      </TableCellActions>
+                    )}
                   </TableCell>
                 ))}
                 {getRowActions && (
