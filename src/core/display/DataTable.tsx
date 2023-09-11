@@ -247,7 +247,7 @@ export default function DataTable<T extends TableData>({
         <TableBody>
           {rows.map(r => (
             <Fragment key={r.id}>
-              <TableRow className={styles.bodyRow}>
+              <TableRow className={styles.bodyRow} appearance={selected.some(s => s.id === r.id) ? 'brand' : 'none'}>
                 {selectable && (
                   <TableCell className={styles.actionCell} key='select'>
                     <Checkbox checked={selected.some(s => s.id === r.id)} onClick={() => toggleSelected(r)} />
