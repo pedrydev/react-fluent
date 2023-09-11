@@ -92,6 +92,19 @@ const useStyles = makeStyles({
     color: tokens.colorBrandBackground,
     cursor: 'pointer',
   },
+  bodyRow: {
+    ':active': {
+      backgroundColor: tokens.colorSubtleBackgroundHover,
+    },
+  },
+  expandedRow: {
+    ':active': {
+      backgroundColor: 'inherit',
+    },
+    ':hover': {
+      backgroundColor: 'inherit',
+    },
+  },
   title: {
     height: '32px',
   },
@@ -234,7 +247,7 @@ export default function DataTable<T extends TableData>({
         <TableBody>
           {rows.map(r => (
             <Fragment key={r.id}>
-              <TableRow>
+              <TableRow className={styles.bodyRow}>
                 {selectable && (
                   <TableCell className={styles.actionCell} key='select'>
                     <Checkbox checked={selected.some(s => s.id === r.id)} onClick={() => toggleSelected(r)} />
@@ -291,7 +304,7 @@ export default function DataTable<T extends TableData>({
                 )}
               </TableRow>
               {expanded.includes(r.id) && (
-                <TableRow>
+                <TableRow className={styles.expandedRow}>
                   <TableCell colSpan={spanAllColumns}>
                     {onExpand(r)}
                   </TableCell>
