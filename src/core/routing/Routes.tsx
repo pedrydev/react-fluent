@@ -1,8 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import NotFound from "@/core/routing/NotFound.tsx";
-import RouteConfig from "@/core/routing/RouteConfig.ts";
-import AppLayout from "@/app-layout/AppLayout.tsx";
-import RouteError from "@/core/routing/RouteError.tsx";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import NotFound from '@/core/routing/NotFound.tsx';
+import RouteConfig from '@/core/routing/RouteConfig.ts';
+import RouteError from '@/core/routing/RouteError.tsx';
+import AppLayout from '@/layout/AppLayout.tsx';
 
 function findParent(routes: RouteConfig[], parent: string) {
   const queue: RouteConfig[] = [...routes];
@@ -13,9 +13,9 @@ function findParent(routes: RouteConfig[], parent: string) {
   return undefined;
 }
 
-const layoutConfigs = import.meta.glob("../../modules/**/layout.routes.tsx", {
+const layoutConfigs = import.meta.glob('../../**/layout.routes.tsx', {
   eager: true,
-  import: "default"
+  import: 'default',
 });
 
 const routes: RouteConfig[] = [];
@@ -25,31 +25,31 @@ Object.keys(layoutConfigs)
     const layoutConfig = layoutConfigs[key] as RouteConfig;
     layoutConfig.children?.push({
       element: <NotFound />,
-      path: "*"
+      path: '*',
     });
     layoutConfig.parents?.forEach(parent => {
       const parentConfig = findParent(routes, parent);
       if (parentConfig) parentConfig.children?.push(layoutConfig);
       else
         throw {
-          message: "Parent not found",
-          current: layoutConfig
+          message: 'Parent not found',
+          current: layoutConfig,
         };
     });
     routes.push({ ...layoutConfig, errorElement: <RouteError /> });
   });
 routes.push({
   element: <NotFound />,
-  path: "*"
+  path: '*',
 });
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
-    path: "",
+    path: '',
     children: routes,
-    errorElement: <RouteError />
-  }
+    errorElement: <RouteError />,
+  },
 ]);
 
 export default function Routes() {

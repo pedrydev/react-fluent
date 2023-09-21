@@ -1,14 +1,14 @@
 import { lazy } from 'react';
-import RouteConfig from '@/core/routing/RouteConfig.ts';
-import { RequirePermissions } from '@/core/auth/components/RequirePermissions.tsx';
-import AppPermissions from '@/core/auth/models/AppPermissions.ts';
-import Notifications from './Notifications.tsx';
-import Page from '@/core/layout/Page.tsx';
+import RouteConfig from '@/core/routing/RouteConfig';
+import { RequirePermissions } from '@/core/auth/components/RequirePermissions';
+import AppPermissions from '@/core/auth/models/AppPermissions';
+import Notifications from './Notifications';
+import Page from '@/core/layout/Page';
 
 const FormExample = lazy(() => import('./FormExample'));
 const Charts = lazy(() => import('./Charts'));
 const Index = lazy(() => import('./Index'));
-const TableExample = lazy(() => import('@/modules/home/pages/TableExample.tsx'));
+const TableExample = lazy(() => import('./TableExample'));
 
 const configs: RouteConfig[] = [
   {

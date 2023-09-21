@@ -13,10 +13,10 @@ import {
 } from '@fluentui/react-components';
 import { SignOut24Regular } from '@fluentui/react-icons';
 import { useAuth } from '@/core/auth/contexts/AuthProvider.tsx';
-import AppIcon from './AppIcon.tsx';
 import NotificationIcon from './notifications/NotificationIcon.tsx';
-import HelpIcon from '@/app-layout/HelpIcon.tsx';
-import LanguageSwitch from '@/app-layout/LanguageSwitch.tsx';
+import AppIcon from './AppIcon.tsx';
+import HelpIcon from './HelpIcon.tsx';
+import LanguageSwitch from './LanguageSwitch.tsx';
 
 const useStyles = makeStyles({
   header: {
@@ -32,7 +32,9 @@ export default function AppHeader() {
   const { logout, user } = useAuth();
 
   return (
-    <header className={mergeClasses('h-12 flex items-center fixed top-0 left-0 right-0', styles.header)}>
+    <header
+      className={mergeClasses('h-12 flex items-center fixed top-0 left-0 right-0', styles.header)}
+    >
       <AppIcon />
       <div className='ml-1.5 flex flex-1 items-center justify-between h-full'>
         <Subtitle2 className={styles.text}>{import.meta.env.VITE_APP_NAME}</Subtitle2>
@@ -45,8 +47,11 @@ export default function AppHeader() {
       <div className='h-12 w-12 flex items-center justify-center'>
         <Menu positioning={{ position: 'below', align: 'end', offset: { mainAxis: 6 } }}>
           <MenuTrigger disableButtonEnhancement>
-            <Avatar className='hover:cursor-pointer' name={`${user.username} image profile}`}
-                    image={{ src: user.profileUrl }} />
+            <Avatar
+              className='hover:cursor-pointer'
+              name={`${user.username} image profile}`}
+              image={{ src: user.profileUrl }}
+            />
           </MenuTrigger>
           <MenuPopover>
             <div className='flex justify-center'>
@@ -54,7 +59,9 @@ export default function AppHeader() {
             </div>
             <MenuDivider />
             <MenuList>
-              <MenuItem icon={<SignOut24Regular />} onClick={logout}>Sign out</MenuItem>
+              <MenuItem icon={<SignOut24Regular />} onClick={logout}>
+                Sign out
+              </MenuItem>
             </MenuList>
           </MenuPopover>
         </Menu>

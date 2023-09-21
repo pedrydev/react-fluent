@@ -1,11 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import NotificationService from "@/app-layout/notifications/NotificationService.ts";
+import { useQuery } from '@tanstack/react-query';
+import NotificationService from './NotificationService';
 
 export default function useAllNotifications(cursor: number) {
   const { data, isLoading } = useQuery({
-    queryKey: ["notification", "all", cursor],
+    queryKey: ['notification', 'all', cursor],
     queryFn: () => NotificationService.getAllNotifications(cursor),
-    suspense: false
+    suspense: false,
   });
   return { data: data ?? [], isLoading };
 }

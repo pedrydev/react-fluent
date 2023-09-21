@@ -1,14 +1,22 @@
-import { Button, Menu, MenuItem, MenuList, MenuPopover, MenuTrigger, Spinner } from '@fluentui/react-components';
+import {
+  Button,
+  Menu,
+  MenuItem,
+  MenuList,
+  MenuPopover,
+  MenuTrigger,
+  Spinner,
+} from '@fluentui/react-components';
 import { Alert24Regular } from '@fluentui/react-icons';
 import { useToggle } from 'ahooks';
 import { useEffect } from 'react';
-import NotificationsDrawer from '@/app-layout/notifications/NotificationsDrawer.tsx';
-import useLastNotifications from '@/app-layout/notifications/useLastNotifications.ts';
-import NotificationModel from '@/app-layout/notifications/NotificationModel.ts';
-import useUniqueList from '@/core/form/useUniqueList.ts';
-import useButtonStyles from '../useButtonStyles.ts';
-import Notification from '@/app-layout/notifications/Notification.tsx';
-import FloatingBadge from '@/core/display/FloatingBadge.tsx';
+import useUniqueList from '@/core/form/useUniqueList';
+import FloatingBadge from '@/core/display/FloatingBadge';
+import NotificationsDrawer from './NotificationsDrawer';
+import useLastNotifications from './useLastNotifications';
+import NotificationModel from './NotificationModel';
+import useButtonStyles from '../useButtonStyles';
+import Notification from './Notification';
 
 export default function NotificationIcon() {
   const { state, setState } = useUniqueList<NotificationModel>({});
@@ -45,9 +53,9 @@ export default function NotificationIcon() {
           <MenuList className='space-y-2'>
             {state.length === 0 ? (
               <MenuItem>No hay notificaciones nuevas</MenuItem>
-            ) : state.reverse().map(n => (
-              <Notification key={n.id} model={n} />
-            ))}
+            ) : (
+              state.reverse().map(n => <Notification key={n.id} model={n} />)
+            )}
             <div className='flex justify-center'>
               <Button
                 onClick={() => {
@@ -55,7 +63,9 @@ export default function NotificationIcon() {
                   toggleDrawer();
                   setState([]);
                 }}
-              >See all</Button>
+              >
+                See all
+              </Button>
             </div>
           </MenuList>
         </MenuPopover>

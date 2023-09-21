@@ -10,15 +10,14 @@ import {
   Spinner,
 } from '@fluentui/react-components';
 import { Question24Regular } from '@fluentui/react-icons';
-import useButtonStyles from '@/app-layout/useButtonStyles.ts';
-import useHelp from '@/core/help/useHelp.ts';
+import useHelp from '@/core/help/useHelp';
+import useButtonStyles from './useButtonStyles';
 
 export default function HelpIcon() {
   const { data, isLoading } = useHelp();
   const buttonStyles = useButtonStyles();
 
-  if (isLoading)
-    return <Spinner size='tiny' />;
+  if (isLoading) return <Spinner size='tiny' />;
 
   return (
     <Dialog>
@@ -34,9 +33,7 @@ export default function HelpIcon() {
       <DialogSurface>
         <DialogBody>
           <DialogTitle>{data?.title}</DialogTitle>
-          <DialogContent>
-            Help here
-          </DialogContent>
+          <DialogContent>Help here</DialogContent>
           <DialogActions>
             <DialogTrigger disableButtonEnhancement>
               <Button>Close</Button>

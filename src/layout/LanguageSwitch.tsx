@@ -1,10 +1,16 @@
-import { Avatar, Button, Popover, PopoverSurface, PopoverTrigger } from '@fluentui/react-components';
+import {
+  Avatar,
+  Button,
+  Popover,
+  PopoverSurface,
+  PopoverTrigger,
+} from '@fluentui/react-components';
 import { LocalLanguage24Regular } from '@fluentui/react-icons';
+import { useToggle } from 'ahooks';
 import es from 'flag-icons/flags/4x3/es.svg';
 import us from 'flag-icons/flags/4x3/us.svg';
-import useButtonStyles from '@/app-layout/useButtonStyles.ts';
 import { useTranslation } from 'react-i18next';
-import { useToggle } from 'ahooks';
+import useButtonStyles from './useButtonStyles';
 
 export default function LanguageSwitch() {
   const buttonStyles = useButtonStyles();
