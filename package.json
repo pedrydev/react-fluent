@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    ",omponents": "9.25.1",
+    "@fluentui/react-components": "9.25.1",
     "@fluentui/react-icons": "^2.0.206",
     "@headlessui/react": "^1.7.14",
     "@microsoft/signalr": "^7.0.5",
@@ -36,7 +36,6 @@
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.0.0",
-    "@vitejs/plugin-react-swc": "^3.3.1",
     "autoprefixer": "^10.4.15",
     "eslint": "^8.38.0",
     "eslint-plugin-react-hooks": "^4.6.0",
