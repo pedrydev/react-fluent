@@ -25,8 +25,12 @@ export default function RecentPagesGroup() {
   return (
     <TagGroup onDismiss={handleDismiss}>
       {recentPages.map(x => (
-        <InteractionTag key={x.href} appearance={location.pathname.startsWith(x.href) ? 'brand' : 'outline'}
-                        value={x.href}>
+        <InteractionTag
+          key={x.href}
+          appearance={location.pathname.startsWith(x.href) ? 'brand' : 'outline'}
+          shape='circular'
+          value={x.href}
+        >
           <Link to={x.href} style={{ height: 'inherit' }}>
             <InteractionTagPrimary hasSecondaryAction icon={x.icon}>
               {x.label}
