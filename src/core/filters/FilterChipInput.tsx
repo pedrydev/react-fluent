@@ -1,13 +1,4 @@
-import {
-  Body1,
-  Body1Stronger,
-  Button,
-  Field,
-  makeStyles,
-  Select,
-  shorthands,
-  tokens,
-} from '@fluentui/react-components';
+import { Button, Field, makeStyles, Select, shorthands, Tag, tokens } from '@fluentui/react-components';
 import { Add24Regular, BinRecycle24Regular, Dismiss12Regular } from '@fluentui/react-icons';
 import { ReactNode, useState } from 'react';
 import FilterChipModel from '@/core/filters/FilterChipModel.ts';
@@ -134,23 +125,23 @@ export default function FilterChipInput({
       {activeChips.length > 0 && (
         <div className='flex space-x-2'>
           {activeChips.map(c => (
-            <div
+            <Tag
               key={`${c.key}`}
-              className={`flex space-x-2 cursor-pointer px-4 rounded-full ${styles.chip}`}
+              appearance='brand'
+              className='hover:cursor-pointer'
+              dismissible
+              dismissIcon={
+                <Dismiss12Regular
+                  onClick={(ev) => {
+                    ev.stopPropagation();
+                    onRemove(c);
+                  }} />
+              }
               onClick={() => handleSelectChip(c.key)}
+              shape='circular'
             >
-              <Body1Stronger>{c.label}: </Body1Stronger>
-              <Body1>{c.value}</Body1>
-              <Button
-                appearance='subtle'
-                icon={<Dismiss12Regular />}
-                onClick={(ev) => {
-                  ev.stopPropagation();
-                  onRemove(c);
-                }}
-                shape='circular'
-                size='small' />
-            </div>
+              {c.label}: {c.value}
+            </Tag>
           ))}
         </div>
       )}
