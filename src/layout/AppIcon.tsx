@@ -12,6 +12,8 @@ import { Drawer, DrawerBody, DrawerHeader, DrawerHeaderTitle } from '@fluentui/r
 import { Add24Regular, GridDots24Filled, Home24Regular, Table24Regular } from '@fluentui/react-icons';
 import { useToggle } from 'ahooks';
 import { Link } from 'react-router-dom';
+import RecentPageModel from '@/layout/recent-pages/RecentPageModel.ts';
+import { useRecentPagesFunctions } from '@/layout/recent-pages/RecentPagesContext.tsx';
 
 const useStyles = makeStyles({
   root: {
@@ -30,6 +32,13 @@ const useStyles = makeStyles({
 export default function AppIcon() {
   const styles = useStyles();
   const [open, { toggle, setLeft }] = useToggle();
+
+  const { add } = useRecentPagesFunctions();
+
+  const handleClick = (model: RecentPageModel) => {
+    add(model);
+    setLeft();
+  };
 
   return (
     <>
@@ -58,17 +67,26 @@ export default function AppIcon() {
             <MenuGroup>
               <MenuGroupHeader>Home</MenuGroupHeader>
               <Link to='/home'>
-                <MenuItem icon={<Home24Regular />} onClick={setLeft}>
+                <MenuItem
+                  icon={<Home24Regular />}
+                  onClick={() => handleClick({ href: '/home', icon: <Home24Regular />, label: 'Home' })}
+                >
                   Home
                 </MenuItem>
               </Link>
               <Link to='/form'>
-                <MenuItem icon={<Add24Regular />} onClick={setLeft}>
+                <MenuItem
+                  icon={<Add24Regular />}
+                  onClick={() => handleClick({ href: '/form', icon: <Add24Regular />, label: 'Form' })}
+                >
                   Form
                 </MenuItem>
               </Link>
               <Link to='/table'>
-                <MenuItem icon={<Table24Regular />} onClick={setLeft}>
+                <MenuItem
+                  icon={<Table24Regular />}
+                  onClick={() => handleClick({ href: '/table', icon: <Table24Regular />, label: 'Table' })}
+                >
                   Table
                 </MenuItem>
               </Link>
