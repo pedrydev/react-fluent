@@ -9,7 +9,7 @@ import {
   tokens,
 } from '@fluentui/react-components';
 import { Drawer, DrawerBody, DrawerHeader, DrawerHeaderTitle } from '@fluentui/react-components/unstable';
-import { Add24Regular, GridDots24Filled, Home24Regular, Table24Regular } from '@fluentui/react-icons';
+import { Add24Regular, GridDots20Filled, GridDots24Filled, Home24Regular, Table24Regular } from '@fluentui/react-icons';
 import { useToggle } from 'ahooks';
 import { Link } from 'react-router-dom';
 import RecentPageModel from '@/layout/recent-pages/RecentPageModel.ts';
@@ -60,7 +60,12 @@ export default function AppIcon() {
       </div>
       <Drawer separator type='overlay' open={open} onOpenChange={setLeft}>
         <DrawerHeader>
-          <DrawerHeaderTitle>Modules</DrawerHeaderTitle>
+          <DrawerHeaderTitle>
+            <div className='flex items-center space-x-2'>
+              <GridDots20Filled />
+              <span>Modules</span>
+            </div>
+          </DrawerHeaderTitle>
         </DrawerHeader>
         <DrawerBody>
           <MenuList>
