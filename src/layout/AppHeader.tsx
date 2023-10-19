@@ -33,7 +33,7 @@ export default function AppHeader() {
 
   return (
     <header
-      className={mergeClasses('h-12 flex items-center fixed top-0 left-0 right-0', styles.header)}
+      className={mergeClasses('h-12 flex items-center shadow-md fixed top-0 left-0 right-0', styles.header)}
     >
       <AppIcon />
       <div className='ml-1.5 flex flex-1 items-center justify-between h-full'>
