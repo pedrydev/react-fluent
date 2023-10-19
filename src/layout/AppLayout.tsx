@@ -29,7 +29,7 @@ export default function AppLayout() {
               </div>
             }
           >
-            <main className='flex-1 px-4 py-2 space-y-2'>
+            <main className='flex-1 p-4 space-y-2'>
               <RecentPagesGroup />
               <Suspense
                 fallback={
