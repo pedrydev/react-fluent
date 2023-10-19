@@ -224,7 +224,6 @@ export default function TableExample() {
             <Button icon={<EyeTracking24Regular />} shape='rounded' title='Include deleted' />
           </div>
         )}
-        selectable
         selectionActions={[
           {
             icon: <Delete20Regular />,

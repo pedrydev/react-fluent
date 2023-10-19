@@ -74,7 +74,6 @@ export interface TableProps<T extends TableData> {
   pagination?: Pagination;
   rows: T[];
   secondaryActions?: ReactNode;
-  selectable?: boolean;
   selectionActions?: SelectionAction<T>[];
   standalone?: boolean;
   title?: string;
@@ -119,7 +118,6 @@ export default function DataTable<T extends TableData>({
                                                          rows,
                                                          standalone = true,
                                                          secondaryActions = null,
-                                                         selectable,
                                                          selectionActions = [],
                                                          title,
                                                        }: TableProps<T>) {
@@ -133,9 +131,8 @@ export default function DataTable<T extends TableData>({
   const [sortForward, { toggle }] = useToggle(true);
 
   let spanAllColumns = visibleColumns.column.length;
-  if (selectable) spanAllColumns++;
   if (onExpand) spanAllColumns++;
-  if (getRowActions) spanAllColumns++;
+  if (getRowActions) spanAllColumns += 2;
 
   const isAllSeelcted = () => {
     if (!rows.some(r => selected.some(s => r.id === s.id)))
@@ -163,40 +160,43 @@ export default function DataTable<T extends TableData>({
 
   return (
     <section className={`bg-white ${standalone && 'shadow-md'}`}>
-      <header className='p-2 flex justify-between'>
-        <div className='flex items-center'>
-          {title && <Subtitle1 className={styles.title}>{title}</Subtitle1>}
-        </div>
-        <div className='flex items-center space-x-2'>
-          {!hideSelectColumns && (
-            <Menu positioning={{ position: 'below', align: 'end', offset: { mainAxis: 6 } }}>
-              <MenuTrigger disableButtonEnhancement>
-                <MenuButton>{visibleColumns.column.length} selected columns</MenuButton>
-              </MenuTrigger>
-              <MenuPopover>
-                <MenuList
-                  checkedValues={visibleColumns}
-                  onCheckedValueChange={(_, { checkedItems }) => setVisibleColumns({ column: checkedItems })}
-                >
-                  <Input
-                    onChange={(_, data) => setColumnSearch(data.value)}
-                    placeholder='Filter by name'
-                    value={columnSearch} />
-                  <MenuDivider />
-                  {columns.filter(c => c.label.toLowerCase().includes(columnSearch.toLowerCase())).map(c => (
-                    <MenuItemCheckbox key={c.label} name='column' value={c.label}>{c.label}</MenuItemCheckbox>
-                  ))}
-                </MenuList>
-              </MenuPopover>
-            </Menu>
-          )}
-          {secondaryActions}
-        </div>
-      </header>
+      {(title || !hideSelectColumns) && (
+        <header className='p-2 flex justify-between'>
+          <div className='flex items-center'>
+            {title && <Subtitle1 className={styles.title}>{title}</Subtitle1>}
+          </div>
+          <div className='flex items-center space-x-2'>
+            {!hideSelectColumns && (
+              <Menu positioning={{ position: 'below', align: 'end', offset: { mainAxis: 6 } }}>
+                <MenuTrigger disableButtonEnhancement>
+                  <MenuButton>{visibleColumns.column.length} selected columns</MenuButton>
+                </MenuTrigger>
+                <MenuPopover>
+                  <MenuList
+                    checkedValues={visibleColumns}
+                    onCheckedValueChange={(_, { checkedItems }) => setVisibleColumns({ column: checkedItems })}
+                  >
+                    <Input
+                      onChange={(_, data) => setColumnSearch(data.value)}
+                      placeholder='Filter by name'
+                      value={columnSearch} />
+                    <MenuDivider />
+                    {columns.filter(c => c.label.toLowerCase().includes(columnSearch.toLowerCase())).map(c => (
+                      <MenuItemCheckbox key={c.label} name='column' value={c.label}>{c.label}</MenuItemCheckbox>
+                    ))}
+                  </MenuList>
+                </MenuPopover>
+              </Menu>
+            )}
+            {secondaryActions}
+          </div>
+        </header>
+      )
+      }
       <Table>
         <TableHeader className={styles.header}>
           <TableRow>
-            {selectable && (
+            {getRowActions && (
               <TableCell className={mergeClasses(styles.headerCell, styles.actionCell)} key='select-all'>
                 <Checkbox
                   checked={isAllSeelcted()}
@@ -248,7 +248,7 @@ export default function DataTable<T extends TableData>({
           {rows.map(r => (
             <Fragment key={r.id}>
               <TableRow className={styles.bodyRow} appearance={selected.some(s => s.id === r.id) ? 'brand' : 'none'}>
-                {selectable && (
+                {getRowActions && (
                   <TableCell className={styles.actionCell} key='select'>
                     <Checkbox checked={selected.some(s => s.id === r.id)} onClick={() => toggleSelected(r)} />
                   </TableCell>
@@ -265,7 +265,7 @@ export default function DataTable<T extends TableData>({
                 )}
                 {columns.filter(c => visibleColumns.column.includes(c.label)).map(c => (
                   <TableCell key={`${r.id}-${c.key.toString()}`}>
-                    {r[c.key]}
+                    {c.renderRow ? c.renderRow(r) : r[c.key]}
                     {c.actions && (
                       <TableCellActions>
                         <div className='flex space-x-1'>
