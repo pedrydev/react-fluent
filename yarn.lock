@@ -388,64 +388,12 @@
   dependencies:
     "@floating-ui/core" "^1.2.6"
 
-"@fluentui/date-time-utilities@^8.5.10":
-  version "8.5.10"
-  resolved "https://registry.yarnpkg.com/@fluentui/date-time-utilities/-/date-time-utilities-8.5.10.tgz#43ef8e8c0e5a087265850f9f02e32e662796c873"
-  integrity sha512-q3zaKmH79+gO5t0EwR2ghSVbJqP3nnNNXx3o/rp+v6LKVZaxRZYMWgw2ESR2gF8rI7TWSeKkGVfBime2mVbDoQ==
-  dependencies:
-    "@fluentui/set-version" "^8.2.9"
-    tslib "^2.1.0"
-
-"@fluentui/dom-utilities@^2.2.9":
-  version "2.2.9"
-  resolved "https://registry.yarnpkg.com/@fluentui/dom-utilities/-/dom-utilities-2.2.9.tgz#77ca60ec0dc66dca38753c68dec4821aafc0980e"
-  integrity sha512-rdqMelLb+d+GjB33j1D2IH+zEO9ofUDP3Yeb7GUCm9byDiUW1aVY2mL7hSZ3t2CearYtEfodbUQaLijWScxO0A==
-  dependencies:
-    "@fluentui/set-version" "^8.2.9"
-    tslib "^2.1.0"
-
-"@fluentui/font-icons-mdl2@^8.5.17":
-  version "8.5.17"
-  resolved "https://registry.yarnpkg.com/@fluentui/font-icons-mdl2/-/font-icons-mdl2-8.5.17.tgz#8f61631d20d30d490d597fdba298b2206f7d9b22"
-  integrity sha512-PKszxrhcgzjmehJHJKQmavlc//X0176arLe8iVhYYassR16cnq9bk45nY9wuaTatK0jjzAJi+IL1RMY0PeYLBQ==
-  dependencies:
-    "@fluentui/set-version" "^8.2.9"
-    "@fluentui/style-utilities" "^8.9.10"
-    "@fluentui/utilities" "^8.13.13"
-    tslib "^2.1.0"
-
-"@fluentui/foundation-legacy@^8.2.37":
-  version "8.2.37"
-  resolved "https://registry.yarnpkg.com/@fluentui/foundation-legacy/-/foundation-legacy-8.2.37.tgz#0cbe8cf936e91ed1b6e98dc3eba12a9c553ecfc9"
-  integrity sha512-WUTNuFMV5xNbx7YUIv9nDWCUR8CQaaOT6eUgprNiFlcfDrjS0zJaoUQlFBd/kIV5R6KhWNL+zJhJg12kdl1geA==
-  dependencies:
-    "@fluentui/merge-styles" "^8.5.10"
-    "@fluentui/set-version" "^8.2.9"
-    "@fluentui/style-utilities" "^8.9.10"
-    "@fluentui/utilities" "^8.13.13"
-    tslib "^2.1.0"
-
-"@fluentui/keyboard-key@^0.4.9":
-  version "0.4.9"
-  resolved "https://registry.yarnpkg.com/@fluentui/keyboard-key/-/keyboard-key-0.4.9.tgz#1a62045ce9f368ac2f7802305c19e30abc52640a"
-  integrity sha512-TttoZOrkzVR6Lg9wUTR0xGZwwJnpTTCKK0/CnA0feZoMNAgYR/FZTt7yNIe2Ty2622Q1JesWiEwPT027VdGxkA==
-  dependencies:
-    tslib "^2.1.0"
-
 "@fluentui/keyboard-keys@^9.0.3":
   version "9.0.3"
   resolved "https://registry.yarnpkg.com/@fluentui/keyboard-keys/-/keyboard-keys-9.0.3.tgz#e7ab9592b38466a071994a43edfc84bfe830ae79"
   integrity sha512-40KBVJ9HzsvmPL3rwYaAvxCacNS0xnTmOt6TLxxrAVgVrZ1X7DLgd8OGFZcWROs0dhHdCk2D51bl4nK8Q1r3mQ==
   dependencies:
     "@swc/helpers" "^0.4.14"
-
-"@fluentui/merge-styles@^8.5.10":
-  version "8.5.10"
-  resolved "https://registry.yarnpkg.com/@fluentui/merge-styles/-/merge-styles-8.5.10.tgz#93a4b9d67415e639175b278e844170898de406bb"
-  integrity sha512-vIiFv7WtXTPz0Sx6h1NpzqrwDN7yef7aQwqFl46yov72BodiAQMTazBl2A/z76IanBPklJmaTquFT9Uydlp/Dg==
-  dependencies:
-    "@fluentui/set-version" "^8.2.9"
-    tslib "^2.1.0"
 
 "@fluentui/priority-overflow@^9.1.1":
   version "9.1.1"
@@ -553,37 +501,6 @@
     "@fluentui/react-utilities" "^9.10.1"
     "@griffel/react" "^1.5.7"
     "@swc/helpers" "^0.4.14"
-
-"@fluentui/react-charting@^5.16.29":
-  version "5.16.29"
-  resolved "https://registry.yarnpkg.com/@fluentui/react-charting/-/react-charting-5.16.29.tgz#ea5942c2961ab41fbcfd680c71ec996d470bbeb9"
-  integrity sha512-pT+MtnTLJ/CIe5MUtRgWBt9N/bBpKTmhhpXWe75SMm3r0vHUKaI33IvTkHrgzAxM3y50/Kr5QZ4919jZ8oXfDA==
-  dependencies:
-    "@fluentui/react-focus" "^8.8.23"
-    "@fluentui/set-version" "^8.2.9"
-    "@fluentui/theme-samples" "^8.7.85"
-    "@microsoft/load-themed-styles" "^1.10.26"
-    "@types/d3-array" "1.2.1"
-    "@types/d3-axis" "1.0.10"
-    "@types/d3-format" "^1.3.1"
-    "@types/d3-hierarchy" "2.0.0"
-    "@types/d3-sankey" "^0.11.0"
-    "@types/d3-scale" "^4.0.0"
-    "@types/d3-selection" "1.4.1"
-    "@types/d3-shape" "2.1.0"
-    "@types/d3-time" "^1.1.0"
-    "@types/d3-time-format" "^2.1.0"
-    d3-array "1.2.1"
-    d3-axis "1.0.8"
-    d3-format "^1.4.4"
-    d3-hierarchy "2.0.0"
-    d3-sankey "^0.12.3"
-    d3-scale "^4.0.0"
-    d3-selection "1.3.0"
-    d3-shape "2.1.0"
-    d3-time "^1.1.0"
-    d3-time-format "^2.1.3"
-    tslib "^2.1.0"
 
 "@fluentui/react-checkbox@^9.1.23", "@fluentui/react-checkbox@^9.1.24":
   version "9.1.24"
@@ -737,28 +654,6 @@
     "@griffel/react" "^1.5.7"
     "@swc/helpers" "^0.4.14"
 
-"@fluentui/react-focus@^8.8.23":
-  version "8.8.23"
-  resolved "https://registry.yarnpkg.com/@fluentui/react-focus/-/react-focus-8.8.23.tgz#b6c8c7134e31c4e0df39eb6bca847468110069ea"
-  integrity sha512-mBCxnrn4cnL9PzdEpNcCl5KtuRRkeumE0PxKvwM0OI9xs3PT4ZNQkM5pML2GXcWuwmHMYA09ZtvdgEvoTpnDJw==
-  dependencies:
-    "@fluentui/keyboard-key" "^0.4.9"
-    "@fluentui/merge-styles" "^8.5.10"
-    "@fluentui/set-version" "^8.2.9"
-    "@fluentui/style-utilities" "^8.9.10"
-    "@fluentui/utilities" "^8.13.13"
-    tslib "^2.1.0"
-
-"@fluentui/react-hooks@^8.6.24":
-  version "8.6.24"
-  resolved "https://registry.yarnpkg.com/@fluentui/react-hooks/-/react-hooks-8.6.24.tgz#62384d21f0bcc8ecf2d31ed94307d5b8e1caffa9"
-  integrity sha512-nw7jGA9Q+n33QPXFkOMNg7LwoPxbD2l0ifWJ5sN7UOZYMPpxO/oSKRiPiskvqKW1I/cGjGffyFE+aRomy9sO7A==
-  dependencies:
-    "@fluentui/react-window-provider" "^2.2.13"
-    "@fluentui/set-version" "^8.2.9"
-    "@fluentui/utilities" "^8.13.13"
-    tslib "^2.1.0"
-
 "@fluentui/react-icons@^2.0.203", "@fluentui/react-icons@^2.0.206":
   version "2.0.206"
   resolved "https://registry.yarnpkg.com/@fluentui/react-icons/-/react-icons-2.0.206.tgz#d551ae21b425f4c90aa1aa7c8a74e0860b1077f0"
@@ -910,13 +805,6 @@
     "@fluentui/react-theme" "^9.1.9"
     "@fluentui/react-utilities" "^9.10.1"
     "@griffel/react" "^1.5.7"
-    "@swc/helpers" "^0.4.14"
-
-"@fluentui/react-portal-compat-context@^9.0.6":
-  version "9.0.6"
-  resolved "https://registry.yarnpkg.com/@fluentui/react-portal-compat-context/-/react-portal-compat-context-9.0.6.tgz#2b35b9ed6a7305cec747945d334c4976d6b0cd7e"
-  integrity sha512-HUt0/YXKRB4chtzlGbZ+7y7FHFyqaI0CeMFAe/QBXVOiOwA01QOr2j4Uky+30vupspIt6mjodLanuw1jMybmqQ==
-  dependencies:
     "@swc/helpers" "^0.4.14"
 
 "@fluentui/react-portal@^9.3.1":
@@ -1246,98 +1134,12 @@
     "@griffel/react" "^1.5.7"
     "@swc/helpers" "^0.4.14"
 
-"@fluentui/react-window-provider@^2.2.13":
-  version "2.2.13"
-  resolved "https://registry.yarnpkg.com/@fluentui/react-window-provider/-/react-window-provider-2.2.13.tgz#60c41aad7fe91eae2d63aa609b3090debe657850"
-  integrity sha512-szXdTwPnvsBIxz31q9T3IVo5kypX84BDM5lpFK2Xo396xdiB8fdF7zp9H9TnJTwScJyZn5Ps3Ng31rBZX4+HNw==
-  dependencies:
-    "@fluentui/set-version" "^8.2.9"
-    tslib "^2.1.0"
-
-"@fluentui/react@^8.109.4":
-  version "8.109.4"
-  resolved "https://registry.yarnpkg.com/@fluentui/react/-/react-8.109.4.tgz#54fbff0a5da8d234b03418c7ac0b8b2e3a011b15"
-  integrity sha512-YKyGQMlIXO5OFlNEH6ASJFYconDBsT7y3ZdKNhxc5EH3DBUk3YdcFOfbrJCzMv8lFS3lNbIeKjPYTkS6tY42nw==
-  dependencies:
-    "@fluentui/date-time-utilities" "^8.5.10"
-    "@fluentui/font-icons-mdl2" "^8.5.17"
-    "@fluentui/foundation-legacy" "^8.2.37"
-    "@fluentui/merge-styles" "^8.5.10"
-    "@fluentui/react-focus" "^8.8.23"
-    "@fluentui/react-hooks" "^8.6.24"
-    "@fluentui/react-portal-compat-context" "^9.0.6"
-    "@fluentui/react-window-provider" "^2.2.13"
-    "@fluentui/set-version" "^8.2.9"
-    "@fluentui/style-utilities" "^8.9.10"
-    "@fluentui/theme" "^2.6.29"
-    "@fluentui/utilities" "^8.13.13"
-    "@microsoft/load-themed-styles" "^1.10.26"
-    tslib "^2.1.0"
-
-"@fluentui/scheme-utilities@^8.3.30":
-  version "8.3.30"
-  resolved "https://registry.yarnpkg.com/@fluentui/scheme-utilities/-/scheme-utilities-8.3.30.tgz#15a5866a2b2780988c65d610dbea10281aa8efa2"
-  integrity sha512-4nyKRvnXO35x0AR+Y8KZ6ofMTroFumMlKRKba50Lyzoqmc76QbcQC+5ZDDgZQD4DqgtttwwtDFcrxtNhb/cXyw==
-  dependencies:
-    "@fluentui/set-version" "^8.2.9"
-    "@fluentui/theme" "^2.6.29"
-    tslib "^2.1.0"
-
-"@fluentui/set-version@^8.2.9":
-  version "8.2.9"
-  resolved "https://registry.yarnpkg.com/@fluentui/set-version/-/set-version-8.2.9.tgz#e48d4eb0572d373d1e96fd5e74688cad94493a5f"
-  integrity sha512-fpWo4DLt8K4spNip2YhNZlGnSKIa5F9hL/wQBE0EPei6+HEeRO2slXfHohOO5v1lIkfLPcpAh/Lzs2iuxzw/lw==
-  dependencies:
-    tslib "^2.1.0"
-
-"@fluentui/style-utilities@^8.9.10":
-  version "8.9.10"
-  resolved "https://registry.yarnpkg.com/@fluentui/style-utilities/-/style-utilities-8.9.10.tgz#8ea0e944f6db91aae4a6d59170b5044b410ff555"
-  integrity sha512-spCRXvBndb34HQC3e5LOLZPSAJF/UDkpHfZQEXmCU9K2dlvMKbmTBZ8B5b4XibBCMZ7VhDtLcV53eQTDl2KMXQ==
-  dependencies:
-    "@fluentui/merge-styles" "^8.5.10"
-    "@fluentui/set-version" "^8.2.9"
-    "@fluentui/theme" "^2.6.29"
-    "@fluentui/utilities" "^8.13.13"
-    "@microsoft/load-themed-styles" "^1.10.26"
-    tslib "^2.1.0"
-
-"@fluentui/theme-samples@^8.7.85":
-  version "8.7.85"
-  resolved "https://registry.yarnpkg.com/@fluentui/theme-samples/-/theme-samples-8.7.85.tgz#55e18789b814c3960fff4a8fb328abc66ffc1f56"
-  integrity sha512-0Uj7Q7qMozKsJktdu7G7QL6FcnSVwVMHsE4oxGv/RenWrIZu+/7qvoqdZdw5qEN+IPCrJDiynLEkhZX0ju5gyw==
-  dependencies:
-    "@fluentui/react" "^8.109.4"
-    "@fluentui/scheme-utilities" "^8.3.30"
-    "@fluentui/set-version" "^8.2.9"
-    tslib "^2.1.0"
-
-"@fluentui/theme@^2.6.29":
-  version "2.6.29"
-  resolved "https://registry.yarnpkg.com/@fluentui/theme/-/theme-2.6.29.tgz#75c56fd7882be6f89bff689c6c5b4b73f7137404"
-  integrity sha512-8Lf8ATspfyzkwf1jqSvgiExMuVdWO/LGS3bleuH7PgJYIpi+QDUg1am5hE2bWYcQ60b14mdRM33lgKnlFXPA4A==
-  dependencies:
-    "@fluentui/merge-styles" "^8.5.10"
-    "@fluentui/set-version" "^8.2.9"
-    "@fluentui/utilities" "^8.13.13"
-    tslib "^2.1.0"
-
 "@fluentui/tokens@1.0.0-alpha.6":
   version "1.0.0-alpha.6"
   resolved "https://registry.yarnpkg.com/@fluentui/tokens/-/tokens-1.0.0-alpha.6.tgz#cfa025ad8bf8c1a908c4d99f224cd253c547919a"
   integrity sha512-3fF2rWSltn4HUdg3Q1Sb9qS6gCT6XsCDeEgbwMt93BWT2qu3cn8n4IQKbeqT/WUv4yd1AhMt7D8JUze2A1I9Kg==
   dependencies:
     "@swc/helpers" "^0.4.14"
-
-"@fluentui/utilities@^8.13.13":
-  version "8.13.13"
-  resolved "https://registry.yarnpkg.com/@fluentui/utilities/-/utilities-8.13.13.tgz#b3c57469e9d903930279e9c5f87ca74b7a7a0673"
-  integrity sha512-tdvRcUP2jW6NacsKeDhndJ91/Bk6qozcsm8W1LUgyr8C8YhAi9PM8I8pN2IqRiPyhUkBhZmfetVVgU2iNZHFsQ==
-  dependencies:
-    "@fluentui/dom-utilities" "^2.2.9"
-    "@fluentui/merge-styles" "^8.5.10"
-    "@fluentui/set-version" "^8.2.9"
-    tslib "^2.1.0"
 
 "@griffel/core@^1.11.0":
   version "1.11.0"
@@ -1420,11 +1222,6 @@
   dependencies:
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
-
-"@microsoft/load-themed-styles@^1.10.26":
-  version "1.10.295"
-  resolved "https://registry.yarnpkg.com/@microsoft/load-themed-styles/-/load-themed-styles-1.10.295.tgz#d3c8d7ab186f422727ba112d6ebe5fe8e41051d9"
-  integrity sha512-W+IzEBw8a6LOOfRJM02dTT7BDZijxm+Z7lhtOAz1+y9vQm1Kdz9jlAO+qCEKsfxtUOmKilW8DIRqFw2aUgKeGg==
 
 "@microsoft/signalr@^7.0.5":
   version "7.0.5"
@@ -1573,86 +1370,6 @@
   dependencies:
     "@tanstack/query-core" "4.29.7"
     use-sync-external-store "^1.2.0"
-
-"@types/d3-array@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@types/d3-array/-/d3-array-1.2.1.tgz#e489605208d46a1c9d980d2e5772fa9c75d9ec65"
-  integrity sha512-YBaAfimGdWE4nDuoGVKsH89/dkz2hWZ0i8qC+xxqmqi+XJ/aXiRF0jPtzXmN7VdkpVjy1xuDmM5/m1FNuB6VWA==
-
-"@types/d3-axis@1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@types/d3-axis/-/d3-axis-1.0.10.tgz#41d6b3ea9032f9531ec0d71d83bcf49294511210"
-  integrity sha512-5YF0wfdQMPKw01VAAupLIlg/T4pn5M3/vL9u0KZjiemnVnnKBEWE24na4X1iW+TfZiYJ8j+BgK2KFYnAAT54Ug==
-  dependencies:
-    "@types/d3-selection" "*"
-
-"@types/d3-format@^1.3.1":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@types/d3-format/-/d3-format-1.4.2.tgz#ea17bf559b71d9afd569ae9bfe4c544dab863baa"
-  integrity sha512-WeGCHAs7PHdZYq6lwl/+jsl+Nfc1J2W1kNcMeIMYzQsT6mtBDBgtJ/rcdjZ0k0rVIvqEZqhhuD5TK/v3P2gFHQ==
-
-"@types/d3-hierarchy@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/d3-hierarchy/-/d3-hierarchy-2.0.0.tgz#92079d9dbcec1dfe2736fb050a8bf916e5850a1c"
-  integrity sha512-YxdskUvwzqggpnSnDQj4KVkicgjpkgXn/g/9M9iGsiToLS3nG6Ytjo1FoYhYVAAElV/fJBGVL3cQ9Hb7tcv+lw==
-
-"@types/d3-path@^1":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@types/d3-path/-/d3-path-1.0.9.tgz#73526b150d14cd96e701597cbf346cfd1fd4a58c"
-  integrity sha512-NaIeSIBiFgSC6IGUBjZWcscUJEq7vpVu7KthHN8eieTV9d9MqkSOZLH4chq1PmcKy06PNe3axLeKmRIyxJ+PZQ==
-
-"@types/d3-sankey@^0.11.0":
-  version "0.11.2"
-  resolved "https://registry.yarnpkg.com/@types/d3-sankey/-/d3-sankey-0.11.2.tgz#803214b11dc0a17db5d782fe9055cd92b06a5d75"
-  integrity sha512-U6SrTWUERSlOhnpSrgvMX64WblX1AxX6nEjI2t3mLK2USpQrnbwYYK+AS9SwiE7wgYmOsSSKoSdr8aoKBH0HgQ==
-  dependencies:
-    "@types/d3-shape" "^1"
-
-"@types/d3-scale@^4.0.0":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@types/d3-scale/-/d3-scale-4.0.3.tgz#7a5780e934e52b6f63ad9c24b105e33dd58102b5"
-  integrity sha512-PATBiMCpvHJSMtZAMEhc2WyL+hnzarKzI6wAHYjhsonjWJYGq5BXTzQjv4l8m2jO183/4wZ90rKvSeT7o72xNQ==
-  dependencies:
-    "@types/d3-time" "*"
-
-"@types/d3-selection@*":
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/@types/d3-selection/-/d3-selection-3.0.5.tgz#27cd53b7672d405025e2414d98532d7934c16ebd"
-  integrity sha512-xCB0z3Hi8eFIqyja3vW8iV01+OHGYR2di/+e+AiOcXIOrY82lcvWW8Ke1DYE/EUVMsBl4Db9RppSBS3X1U6J0w==
-
-"@types/d3-selection@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@types/d3-selection/-/d3-selection-1.4.1.tgz#fa1f8710a6b5d7cfe5c6caa61d161be7cae4a022"
-  integrity sha512-bv8IfFYo/xG6dxri9OwDnK3yCagYPeRIjTlrcdYJSx+FDWlCeBDepIHUpqROmhPtZ53jyna0aUajZRk0I3rXNA==
-
-"@types/d3-shape@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@types/d3-shape/-/d3-shape-2.1.0.tgz#cc7bbc9fc2c25f092bd457887a3224a21a55ca55"
-  integrity sha512-xTMEs8eITRksXclcVxMHIONRdyjj2TjDIwO4XFOPTVBNK9/oC4ZOhUbvTz1IpcsEsS/mClwuulP+OoawSAbSGA==
-  dependencies:
-    "@types/d3-path" "^1"
-
-"@types/d3-shape@^1":
-  version "1.3.8"
-  resolved "https://registry.yarnpkg.com/@types/d3-shape/-/d3-shape-1.3.8.tgz#c3c15ec7436b4ce24e38de517586850f1fea8e89"
-  integrity sha512-gqfnMz6Fd5H6GOLYixOZP/xlrMtJms9BaS+6oWxTKHNqPGZ93BkWWupQSCYm6YHqx6h9wjRupuJb90bun6ZaYg==
-  dependencies:
-    "@types/d3-path" "^1"
-
-"@types/d3-time-format@^2.1.0":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@types/d3-time-format/-/d3-time-format-2.3.1.tgz#87a30e4513b9d1d53b920327a361f87255bf3372"
-  integrity sha512-fck0Z9RGfIQn3GJIEKVrp15h9m6Vlg0d5XXeiE/6+CQiBmMDZxfR21XtjEPuDeg7gC3bBM0SdieA5XF3GW1wKA==
-
-"@types/d3-time@*":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/d3-time/-/d3-time-3.0.0.tgz#e1ac0f3e9e195135361fa1a1d62f795d87e6e819"
-  integrity sha512-sZLCdHvBUcNby1cB6Fd3ZBrABbjz3v1Vm90nysCQ6Vt7vd6e/h9Lt7SiJUoEX0l4Dzc7P5llKyhqSi1ycSf1Hg==
-
-"@types/d3-time@^1.1.0":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@types/d3-time/-/d3-time-1.1.1.tgz#6cf3a4242c3bbac00440dfb8ba7884f16bedfcbf"
-  integrity sha512-ULX7LoqXTCYtM+tLYOaeAJK7IwCT+4Gxlm2MaH0ErKLi07R5lh8NHCAyWcDkCCmx1AfRcBEV6H9QE9R25uP7jw==
 
 "@types/estree@^1.0.0":
   version "1.0.1"
@@ -2098,131 +1815,6 @@ csstype@^3.0.2, csstype@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.2.tgz#1d4bf9d572f11c14031f0436e1c10bc1f571f50b"
   integrity sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==
-
-"d3-array@1 - 2":
-  version "2.12.1"
-  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.12.1.tgz#e20b41aafcdffdf5d50928004ececf815a465e81"
-  integrity sha512-B0ErZK/66mHtEsR1TkPEEkwdy+WDesimkM5gpZr5Dsg54BiTA5RXtYW5qTLIAcekaS9xfZrzBLF/OAkB3Qn1YQ==
-  dependencies:
-    internmap "^1.0.0"
-
-d3-array@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.2.1.tgz#d1ca33de2f6ac31efadb8e050a021d7e2396d5dc"
-  integrity sha512-CyINJQ0SOUHojDdFDH4JEM0552vCR1utGyLHegJHyYH0JyCpSeTPxi4OBqHMA2jJZq4NH782LtaJWBImqI/HBw==
-
-"d3-array@2 - 3", "d3-array@2.10.0 - 3":
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-3.2.3.tgz#39f1f4954e4a09ff69ac597c2d61906b04e84740"
-  integrity sha512-JRHwbQQ84XuAESWhvIPaUV4/1UYTBOLiOPGWqgFDHZS1D5QN9c57FbH3QpEnQMYiOXNzKUQyGTZf+EVO7RT5TQ==
-  dependencies:
-    internmap "1 - 2"
-
-d3-axis@1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/d3-axis/-/d3-axis-1.0.8.tgz#31a705a0b535e65759de14173a31933137f18efa"
-  integrity sha512-K0djTb26iQ6AsuD2d6Ka08wBHf4V30awIxV4XFuB/iLzYtTqqJlE/nIN0DBJJCX7lbOqbt2/oeX3r+sU5k2veg==
-
-"d3-color@1 - 3":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-3.1.0.tgz#395b2833dfac71507f12ac2f7af23bf819de24e2"
-  integrity sha512-zg/chbXyeBtMQ1LbD/WSoW2DpC3I0mpmPdW+ynRTj/x2DAWYrIY7qeZIHidozwV24m4iavr15lNwIwLxRmOxhA==
-
-"d3-format@1 - 3":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-3.1.0.tgz#9260e23a28ea5cb109e93b21a06e24e2ebd55641"
-  integrity sha512-YyUI6AEuY/Wpt8KWLgZHsIU86atmikuoOmCfommt0LYHiQSPjvX2AcFc38PX0CBpr2RCyZhjex+NS/LPOv6YqA==
-
-d3-format@^1.4.4:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.4.5.tgz#374f2ba1320e3717eb74a9356c67daee17a7edb4"
-  integrity sha512-J0piedu6Z8iB6TbIGfZgDzfXxUFN3qQRMofy2oPdXzQibYGqPB/9iMcxr/TGalU+2RsyDO+U4f33id8tbnSRMQ==
-
-d3-hierarchy@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/d3-hierarchy/-/d3-hierarchy-2.0.0.tgz#dab88a58ca3e7a1bc6cab390e89667fcc6d20218"
-  integrity sha512-SwIdqM3HxQX2214EG9GTjgmCc/mbSx4mQBn+DuEETubhOw6/U3fmnji4uCVrmzOydMHSO1nZle5gh6HB/wdOzw==
-
-"d3-interpolate@1.2.0 - 3":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-3.0.1.tgz#3c47aa5b32c5b3dfb56ef3fd4342078a632b400d"
-  integrity sha512-3bYs1rOD33uo8aqJfKP3JWPAibgw8Zm2+L9vBKEHJ2Rg+viTR7o5Mmv5mZcieN+FRYaAOWX5SJATX6k1PWz72g==
-  dependencies:
-    d3-color "1 - 3"
-
-d3-path@1:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/d3-path/-/d3-path-1.0.9.tgz#48c050bb1fe8c262493a8caf5524e3e9591701cf"
-  integrity sha512-VLaYcn81dtHVTjEHd8B+pbe9yHWpXKZUC87PzoFmsFrJqgFwDe/qxfp5MlfsfM1V5E/iVt0MmEbWQ7FVIXh/bg==
-
-"d3-path@1 - 2":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/d3-path/-/d3-path-2.0.0.tgz#55d86ac131a0548adae241eebfb56b4582dd09d8"
-  integrity sha512-ZwZQxKhBnv9yHaiWd6ZU4x5BtCQ7pXszEV9CU6kRgwIQVQGLMv1oiL4M+MK/n79sYzsj+gcgpPQSctJUsLN7fA==
-
-d3-sankey@^0.12.3:
-  version "0.12.3"
-  resolved "https://registry.yarnpkg.com/d3-sankey/-/d3-sankey-0.12.3.tgz#b3c268627bd72e5d80336e8de6acbfec9d15d01d"
-  integrity sha512-nQhsBRmM19Ax5xEIPLMY9ZmJ/cDvd1BG3UVvt5h3WRxKg5zGRbvnteTyWAbzeSvlh3tW7ZEmq4VwR5mB3tutmQ==
-  dependencies:
-    d3-array "1 - 2"
-    d3-shape "^1.2.0"
-
-d3-scale@^4.0.0:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-4.0.2.tgz#82b38e8e8ff7080764f8dcec77bd4be393689396"
-  integrity sha512-GZW464g1SH7ag3Y7hXjf8RoUuAFIqklOAq3MRl4OaWabTFJY9PN/E1YklhXLh+OQ3fM9yS2nOkCoS+WLZ6kvxQ==
-  dependencies:
-    d3-array "2.10.0 - 3"
-    d3-format "1 - 3"
-    d3-interpolate "1.2.0 - 3"
-    d3-time "2.1.1 - 3"
-    d3-time-format "2 - 4"
-
-d3-selection@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-1.3.0.tgz#d53772382d3dc4f7507bfb28bcd2d6aed2a0ad6d"
-  integrity sha512-qgpUOg9tl5CirdqESUAu0t9MU/t3O9klYfGfyKsXEmhyxyzLpzpeh08gaxBUTQw1uXIOkr/30Ut2YRjSSxlmHA==
-
-d3-shape@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-2.1.0.tgz#3b6a82ccafbc45de55b57fcf956c584ded3b666f"
-  integrity sha512-PnjUqfM2PpskbSLTJvAzp2Wv4CZsnAgTfcVRTwW03QR3MkXF8Uo7B1y/lWkAsmbKwuecto++4NlsYcvYpXpTHA==
-  dependencies:
-    d3-path "1 - 2"
-
-d3-shape@^1.2.0:
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.3.7.tgz#df63801be07bc986bc54f63789b4fe502992b5d7"
-  integrity sha512-EUkvKjqPFUAZyOlhY5gzCxCeI0Aep04LwIRpsZ/mLFelJiUfnK56jo5JMDSE7yyP2kLSb6LtF+S5chMk7uqPqw==
-  dependencies:
-    d3-path "1"
-
-"d3-time-format@2 - 4":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/d3-time-format/-/d3-time-format-4.1.0.tgz#7ab5257a5041d11ecb4fe70a5c7d16a195bb408a"
-  integrity sha512-dJxPBlzC7NugB2PDLwo9Q8JiTR3M3e4/XANkreKSUxF8vvXKqm1Yfq4Q5dl8budlunRVlUUaDUgFt7eA8D6NLg==
-  dependencies:
-    d3-time "1 - 3"
-
-d3-time-format@^2.1.3:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/d3-time-format/-/d3-time-format-2.3.0.tgz#107bdc028667788a8924ba040faf1fbccd5a7850"
-  integrity sha512-guv6b2H37s2Uq/GefleCDtbe0XZAuy7Wa49VGkPVPMfLL9qObgBST3lEHJBMUp8S7NdLQAGIvr2KXk8Hc98iKQ==
-  dependencies:
-    d3-time "1"
-
-d3-time@1, d3-time@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/d3-time/-/d3-time-1.1.0.tgz#b1e19d307dae9c900b7e5b25ffc5dcc249a8a0f1"
-  integrity sha512-Xh0isrZ5rPYYdqhAVk8VLnMEidhz5aP7htAADH6MfzgmmicPkTo8LhkLxci61/lCB7n7UmE3bN0leRt+qvkLxA==
-
-"d3-time@1 - 3", "d3-time@2.1.1 - 3":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/d3-time/-/d3-time-3.1.0.tgz#9310db56e992e3c0175e1ef385e545e48a9bb5c7"
-  integrity sha512-VqKjzBLejbSMT4IgbmVgDjpkYrNWUYJnbCGo874u7MMKIWsILRX+OpX/gTk8MqjpT1A/c6HY2dCA77ZN0lkQ2Q==
-  dependencies:
-    d3-array "2 - 3"
 
 dayjs@^1.9.1:
   version "1.11.7"
@@ -2733,16 +2325,6 @@ inherits@2:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
-
-"internmap@1 - 2":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/internmap/-/internmap-2.0.3.tgz#6685f23755e43c524e251d29cbc97248e3061009"
-  integrity sha512-5Hh7Y1wQbvY5ooGgPbDaL5iYLAPzMTUrjMulskHLH6wnv/A+1q5rgEaiuqEjB+oxGXIVZs1FF+R/KPN3ZSQYYg==
-
-internmap@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/internmap/-/internmap-1.0.1.tgz#0017cc8a3b99605f0302f2b198d272e015e5df95"
-  integrity sha512-lDB5YccMydFBtasVtxnZ3MRBHuaoE8GKsppq+EchKL2U4nK/DmEpPHNH8MZe5HkMtpSiTSOZwfN0tzYjO/lJEw==
 
 intersection-observer@^0.12.0:
   version "0.12.2"

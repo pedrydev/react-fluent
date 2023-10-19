@@ -6,7 +6,6 @@ import Notifications from './Notifications';
 import Page from '@/core/layout/Page';
 
 const FormExample = lazy(() => import('./FormExample'));
-const Charts = lazy(() => import('./Charts'));
 const Index = lazy(() => import('./Index'));
 const TableExample = lazy(() => import('./TableExample'));
 
@@ -38,15 +37,6 @@ const configs: RouteConfig[] = [
       </RequirePermissions>
     ),
     path: 'home',
-    parents: ['HomeLayout'],
-  },
-  {
-    element: (
-      <Page header='Chart' helpPath='chart' title='Chart'>
-        <Charts />
-      </Page>
-    ),
-    path: 'chart',
     parents: ['HomeLayout'],
   },
   {
