@@ -1,5 +1,5 @@
+import { Outlet } from 'react-router-dom';
 import RouteConfig from '@/core/routing/RouteConfig.ts';
-import { lazy } from 'react';
 
 const allConfigs = import.meta.glob('./**/routes.tsx', {
   eager: true,
@@ -12,13 +12,11 @@ Object.keys(allConfigs)
   .forEach(configArr =>
     configArr.forEach(config => {
       if (config.parents?.some(parent => parent === 'HomeLayout')) children.push(config);
-    })
+    }),
   );
 
-const Layout = lazy(() => import('./HomeLayout'));
-
 const config: RouteConfig = {
-  element: <Layout />,
+  element: <Outlet />,
   name: 'HomeLayout',
   path: '/',
   children,

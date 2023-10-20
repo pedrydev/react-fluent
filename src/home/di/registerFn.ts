@@ -6,10 +6,10 @@ const httpClient = new HttpClient({
   url: 'https://jsonplaceholder.typicode.com',
 });
 
-const registerHomeServices = (container: DependencyContainer) => {
+const registerFn = (container: DependencyContainer) => {
   container
     .registerInstance<HttpClient>(HttpClient, httpClient)
     .registerSingleton<JsonPlaceholderTodoService>(JsonPlaceholderTodoService);
 };
 
-export default registerHomeServices;
+export default registerFn;
