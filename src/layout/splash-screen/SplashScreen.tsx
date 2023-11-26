@@ -14,9 +14,9 @@ export default function SplashScreen({ children }: PropsWithChildren) {
         show={isFetching > 0}
         enter='transition-opacity duration-75'
         enterFrom='opacity-0'
-        enterTo='opacity-25'
+        enterTo='opacity-50'
         leave='transition-opacity duration-150'
-        leaveFrom='opacity-25'
+        leaveFrom='opacity-50'
         leaveTo='opacity-0'
       >
         <SplashScreenContent />
