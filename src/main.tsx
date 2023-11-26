@@ -12,22 +12,26 @@ import { Track } from './core/track/TrackContext.tsx';
 import AppServiceProvider from './AppServiceProvider.tsx';
 import './core/styles/tailwindcss.css';
 import './core/styles/reset.css';
+import SplashScreen from '@/layout/splash-screen/SplashScreen.tsx';
+import SplashScreenContent from '@/layout/splash-screen/SplashScreenContent.tsx';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <Theme>
     <AppServiceProvider>
       <QueryProvider>
         <ToastProvider>
-          <Suspense>
-            <I18n>
-              <AuthProvider>
-                <HelpPathProvider>
-                  <Track appId='react-fluent-ui'>
-                    <Routes />
-                  </Track>
-                </HelpPathProvider>
-              </AuthProvider>
-            </I18n>
+          <Suspense fallback={<SplashScreenContent />}>
+            <SplashScreen>
+              <I18n>
+                <AuthProvider>
+                  <HelpPathProvider>
+                    <Track appId='react-fluent-ui'>
+                      <Routes />
+                    </Track>
+                  </HelpPathProvider>
+                </AuthProvider>
+              </I18n>
+            </SplashScreen>
           </Suspense>
         </ToastProvider>
       </QueryProvider>
