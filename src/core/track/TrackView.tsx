@@ -1,10 +1,10 @@
-import { TrackData, useTrackData } from "@/core/track/TrackContext.tsx";
-import { cloneElement, ReactElement, useEffect, useRef } from "react";
-import { useInViewport } from "ahooks";
-import TrackService from "@/core/track/TrackService.ts";
-import { useService } from "@/core/providers/ServiceProvider.tsx";
+import { TrackData, useTrackData } from '@/core/track/TrackProvider.tsx';
+import { cloneElement, ReactElement, useEffect, useRef } from 'react';
+import { useInViewport } from 'ahooks';
+import TrackService from '@/core/track/TrackService.ts';
+import { useService } from '@/core/providers/ServiceProvider.tsx';
 
-export type TrackViewProps = Omit<TrackData, "children"> & {
+export type TrackViewProps = Omit<TrackData, 'children'> & {
   children: ReactElement;
 }
 

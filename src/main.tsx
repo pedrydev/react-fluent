@@ -9,7 +9,7 @@ import I18n from './core/providers/I18n.tsx';
 import QueryProvider from './core/providers/QueryProvider.tsx';
 import Theme from './core/providers/Theme.tsx';
 import Routes from './core/routing/Routes.tsx';
-import { Track } from './core/track/TrackContext.tsx';
+import { RootTrack } from './core/track/TrackProvider.tsx';
 import SplashScreen from './layout/splash-screen/SplashScreen.tsx';
 import SplashScreenContent from './layout/splash-screen/SplashScreenContent.tsx';
 import AppServiceProvider from './AppServiceProvider.tsx';
@@ -27,9 +27,9 @@ createRoot(document.getElementById('root') as HTMLElement).render(
                 <I18n>
                   <AuthProvider>
                     <HelpPathProvider>
-                      <Track appId='react-fluent-ui'>
+                      <RootTrack appId='react-fluent-ui'>
                         <Routes />
-                      </Track>
+                      </RootTrack>
                     </HelpPathProvider>
                   </AuthProvider>
                 </I18n>
