@@ -1,23 +1,18 @@
-import {
-  Button,
-  Label,
-  Radio,
-  RadioGroup,
-  RadioGroupProps,
-  ToastIntent,
-} from '@fluentui/react-components';
+import { Button, Label, Radio, RadioGroup, RadioGroupProps, ToastIntent } from '@fluentui/react-components';
 import { useEffect, useState } from 'react';
 import TrackEvent from '@/core/track/TrackEvent.tsx';
 import { useService } from '@/core/providers/ServiceProvider.tsx';
 import LoggerService from '@/core/services/LoggerService.ts';
 import useToast from '@/core/feedback/useToast.ts';
 import JsonPlaceholderTodoService from '@/home/services/JsonPlaceholderTodoService.ts';
+import { useFeatures } from '@/core/providers/FeatureProvider.tsx';
 
 export default function HomeIndex() {
   const toast = useToast();
   const service = useService(JsonPlaceholderTodoService);
   const logger = useService(LoggerService);
   const [intent, setIntent] = useState<ToastIntent>('success');
+  const features = useFeatures();
 
   useEffect(() => {
     service.getOne('1').then(res => {
@@ -44,11 +39,12 @@ export default function HomeIndex() {
       <div className='flex space-x-2'>
         <TrackEvent event='onClick' target='snackbarTestButton'>
           <Button
+            disabled={!features.test}
             onClick={() => {
               toast.open('this is a message', intent!);
             }}
           >
-            Open toast
+            {features.test ? 'Click' : 'Enable \'test\' feature'}
           </Button>
         </TrackEvent>
         <Button onClick={toast.close}>Close</Button>

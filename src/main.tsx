@@ -14,27 +14,30 @@ import './core/styles/tailwindcss.css';
 import './core/styles/reset.css';
 import SplashScreen from '@/layout/splash-screen/SplashScreen.tsx';
 import SplashScreenContent from '@/layout/splash-screen/SplashScreenContent.tsx';
+import FeatureProvider from '@/core/providers/FeatureProvider.tsx';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <Theme>
-    <AppServiceProvider>
-      <QueryProvider>
-        <ToastProvider>
-          <Suspense fallback={<SplashScreenContent />}>
-            <SplashScreen>
-              <I18n>
-                <AuthProvider>
-                  <HelpPathProvider>
-                    <Track appId='react-fluent-ui'>
-                      <Routes />
-                    </Track>
-                  </HelpPathProvider>
-                </AuthProvider>
-              </I18n>
-            </SplashScreen>
-          </Suspense>
-        </ToastProvider>
-      </QueryProvider>
-    </AppServiceProvider>
+    <FeatureProvider>
+      <AppServiceProvider>
+        <QueryProvider>
+          <ToastProvider>
+            <Suspense fallback={<SplashScreenContent />}>
+              <SplashScreen>
+                <I18n>
+                  <AuthProvider>
+                    <HelpPathProvider>
+                      <Track appId='react-fluent-ui'>
+                        <Routes />
+                      </Track>
+                    </HelpPathProvider>
+                  </AuthProvider>
+                </I18n>
+              </SplashScreen>
+            </Suspense>
+          </ToastProvider>
+        </QueryProvider>
+      </AppServiceProvider>
+    </FeatureProvider>
   </Theme>,
 );

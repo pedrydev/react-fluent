@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 
-import { LogLevel } from "@/core/services/LoggerService.ts";
+import { LogLevel } from '@/core/services/LoggerService.ts';
 
 interface ImportMetaEnv {
   readonly VITE_APP_NAME: string;
@@ -16,6 +16,9 @@ interface ImportMetaEnv {
   readonly VITE_APP_CLIENT_ID: string;
   readonly VITE_APP_LOGIN_URI: string;
   readonly VITE_APP_REDIRECT_URI: string;
+
+  // Features
+  readonly VITE_APP_FEATURE_TEST: '0' | '1';
 
   // Services
   readonly VITE_APP_LOG_LEVEL: LogLevel;
