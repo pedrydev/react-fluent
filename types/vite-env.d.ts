@@ -12,10 +12,10 @@ interface ImportMetaEnv {
   readonly VITE_APP_AUTH_URL: string;
   readonly VITE_APP_NOTIFICATION_URL: string;
 
-  // Auth
-  readonly VITE_APP_CLIENT_ID: string;
-  readonly VITE_APP_LOGIN_URI: string;
-  readonly VITE_APP_REDIRECT_URI: string;
+  // Keycloak
+  readonly VITE_APP_KEYCLOAK_CLIENT_ID: string;
+  readonly VITE_APP_KEYCLOAK_REALM: string;
+  readonly VITE_APP_KEYCLOAK_URL: string;
 
   // Features
   readonly VITE_APP_FEATURE_TEST: '0' | '1';

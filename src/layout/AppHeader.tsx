@@ -11,8 +11,8 @@ import {
   Subtitle2,
   tokens,
 } from '@fluentui/react-components';
-import { SignOut24Regular } from '@fluentui/react-icons';
-import { useAuth } from '@/core/auth/contexts/AuthProvider.tsx';
+import { PersonAccounts24Regular, SignOut24Regular } from '@fluentui/react-icons';
+import { useAuthFunctions, useUser } from '@/core/auth/providers/AuthProvider.tsx';
 import NotificationIcon from './notifications/NotificationIcon.tsx';
 import AppIcon from './AppIcon.tsx';
 import HelpIcon from './HelpIcon.tsx';
@@ -29,7 +29,13 @@ const useStyles = makeStyles({
 
 export default function AppHeader() {
   const styles = useStyles();
-  const { logout, user } = useAuth();
+  const user = useUser();
+
+  const { logout } = useAuthFunctions();
+
+  const goAccount = () => {
+    window.open(user?.profileUrl, 'blank');
+  };
 
   return (
     <header
@@ -49,17 +55,22 @@ export default function AppHeader() {
           <MenuTrigger disableButtonEnhancement>
             <Avatar
               className='hover:cursor-pointer'
-              name={`${user.username} image profile}`}
-              image={{ src: user.profileUrl }}
+              name={`${user?.username} image profile}`}
+              image={{ src: user?.profileUrl }}
             />
           </MenuTrigger>
           <MenuPopover>
             <div className='flex justify-center'>
-              <Subtitle2>{user.username}</Subtitle2>
+              <Subtitle2>{user?.username}</Subtitle2>
             </div>
             <MenuDivider />
             <MenuList>
-              <MenuItem icon={<SignOut24Regular />} onClick={logout}>
+              {user?.profileUrl && (
+                <MenuItem icon={<PersonAccounts24Regular />} onClick={goAccount}>
+                  Manage account
+                </MenuItem>
+              )}
+              <MenuItem icon={<SignOut24Regular />} onClick={() => logout()}>
                 Sign out
               </MenuItem>
             </MenuList>
