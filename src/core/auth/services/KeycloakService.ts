@@ -37,6 +37,7 @@ export default class KeycloakService extends OidcService {
           }
         }
       }, this.validityBeforeTokenExpirationInSeconds);
+      window.sessionStorage.setItem('token', keycloak.token ?? '');
       window.localStorage.setItem('rt', keycloak.refreshToken as string);
       return {
         user: {
