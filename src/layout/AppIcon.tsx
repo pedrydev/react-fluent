@@ -1,5 +1,9 @@
 import {
   Button,
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerHeaderTitle,
   makeStyles,
   MenuGroup,
   MenuGroupHeader,
@@ -9,15 +13,7 @@ import {
   Subtitle1,
   tokens,
 } from '@fluentui/react-components';
-import { Drawer, DrawerBody, DrawerHeader, DrawerHeaderTitle } from '@fluentui/react-components/unstable';
-import {
-  Add24Regular,
-  Dismiss20Regular,
-  GridDots20Filled,
-  GridDots24Filled,
-  Home24Regular,
-  Table24Regular,
-} from '@fluentui/react-icons';
+import { AddRegular, DismissRegular, GridDotsFilled, HomeRegular, TableRegular } from '@fluentui/react-icons';
 import { useToggle } from 'ahooks';
 import { Link } from 'react-router-dom';
 import RecentPageModel from '@/layout/recent-pages/RecentPageModel.ts';
@@ -62,7 +58,7 @@ export default function AppIcon() {
         <Button
           appearance='transparent'
           className={styles.icon}
-          icon={<GridDots24Filled />}
+          icon={<GridDotsFilled />}
           shape='circular'
         />
       </div>
@@ -72,14 +68,14 @@ export default function AppIcon() {
             action={
               <Button
                 appearance='subtle'
-                icon={<Dismiss20Regular />}
+                icon={<DismissRegular />}
                 shape='circular'
                 onClick={setLeft}
               />
             }
           >
             <div className='inline-flex items-center space-x-2'>
-              <GridDots20Filled />
+              <GridDotsFilled />
               <Subtitle1>Modules</Subtitle1>
             </div>
           </DrawerHeaderTitle>
@@ -90,24 +86,24 @@ export default function AppIcon() {
               <MenuGroupHeader>Home</MenuGroupHeader>
               <Link to='/home'>
                 <MenuItem
-                  icon={<Home24Regular />}
-                  onClick={() => handleClick({ href: '/home', icon: <Home24Regular />, label: 'Home' })}
+                  icon={<HomeRegular />}
+                  onClick={() => handleClick({ href: '/home', icon: <HomeRegular />, label: 'Home' })}
                 >
                   Home
                 </MenuItem>
               </Link>
               <Link to='/form'>
                 <MenuItem
-                  icon={<Add24Regular />}
-                  onClick={() => handleClick({ href: '/form', icon: <Add24Regular />, label: 'Form' })}
+                  icon={<AddRegular />}
+                  onClick={() => handleClick({ href: '/form', icon: <AddRegular />, label: 'Form' })}
                 >
                   Form
                 </MenuItem>
               </Link>
               <Link to='/table'>
                 <MenuItem
-                  icon={<Table24Regular />}
-                  onClick={() => handleClick({ href: '/table', icon: <Table24Regular />, label: 'Table' })}
+                  icon={<TableRegular />}
+                  onClick={() => handleClick({ href: '/table', icon: <TableRegular />, label: 'Table' })}
                 >
                   Table
                 </MenuItem>

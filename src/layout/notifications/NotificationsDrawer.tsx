@@ -1,11 +1,12 @@
 import {
+  Button,
   Drawer,
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
   DrawerHeaderTitle,
-} from '@fluentui/react-components/unstable';
-import { Button, Spinner } from '@fluentui/react-components';
+  Spinner,
+} from '@fluentui/react-components';
 import { Dismiss24Regular } from '@fluentui/react-icons';
 import { memo, useState } from 'react';
 import Notification from './Notification';
@@ -21,7 +22,7 @@ function NotificationsDrawer({ open, toggle }: NotificationsDrawerProps) {
   const { data, isLoading } = useAllNotifications(cursor);
 
   return (
-    <Drawer type='overlay' onOpenChange={toggle} open={open} position='right' separator>
+    <Drawer type='overlay' onOpenChange={toggle} open={open} position='end' separator>
       <DrawerHeader>
         <DrawerHeaderTitle
           action={
