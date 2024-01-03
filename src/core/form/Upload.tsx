@@ -1,7 +1,7 @@
-import { Body1, Button, Caption1 } from "@fluentui/react-components";
-import { ArrowUpload24Regular, Dismiss24Regular } from "@fluentui/react-icons";
-import { ChangeEvent, useRef, useState } from "react";
-import usePalette from "@/core/styles/usePalette.ts";
+import { Body1, Button, Caption1 } from '@fluentui/react-components';
+import { ArrowUpload24Regular, Dismiss24Regular } from '@fluentui/react-icons';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import usePalette from '@/core/styles/usePalette.ts';
 
 export interface UploadProps {
   disabled?: boolean;
@@ -14,17 +14,22 @@ export interface UploadProps {
 
 export default function Upload({ disabled, label, onChange, maxFiles = 1, validate, values }: UploadProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const palette = usePalette();
+
+  useEffect(() => {
+    if (values.length === 0 && inputRef.current)
+      inputRef.current.value = '';
+  }, [values]);
 
   const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
     if (ev.target.files === null) {
-      setError("");
+      setError('');
       onChange([]);
       return;
     }
 
-    var files = Array.from(ev.target.files);
+    const files = Array.from(ev.target.files);
 
     if (values.length + files.length > maxFiles) {
       setError(`Only ${maxFiles} files are allowed`);
@@ -39,7 +44,7 @@ export default function Upload({ disabled, label, onChange, maxFiles = 1, valida
       }
     }
 
-    setError("");
+    setError('');
     onChange([...values, ...files]);
   };
 
@@ -52,23 +57,23 @@ export default function Upload({ disabled, label, onChange, maxFiles = 1, valida
   };
 
   return (
-    <div className="flex flex-col space-y-2">
-      <div className="flex flex-col">
-        <Button className="w-max" disabled={disabled} icon={<ArrowUpload24Regular />}
+    <div className='flex flex-col space-y-2'>
+      <div className='flex flex-col'>
+        <Button className='w-max' disabled={disabled} icon={<ArrowUpload24Regular />}
                 onClick={handleClick}>{label}</Button>
         {error && <Caption1 className={palette.textError}>{error}</Caption1>}
       </div>
-      <input className="hidden" multiple={maxFiles > 1} onChange={handleChange} ref={inputRef} type="file" />
+      <input className='hidden' multiple={maxFiles > 1} onChange={handleChange} ref={inputRef} type='file' />
       {values.map((f, i) => (
-        <div key={f.name + f.lastModified} className="flex space-x-4 justify-between">
+        <div key={f.name + f.lastModified} className='flex space-x-4 justify-between'>
           <Body1>{f.name}</Body1>
           <Button
-            appearance="transparent"
+            appearance='transparent'
             icon={<Dismiss24Regular />}
             onClick={() => handleRemove(i)}
-            shape="circular"
-            size="small"
-            title="Remove file" />
+            shape='circular'
+            size='small'
+            title='Remove file' />
         </div>
       ))}
     </div>
