@@ -1,5 +1,6 @@
 import {
   Body1,
+  Body1Strong,
   Button,
   Checkbox,
   Input,
@@ -103,6 +104,9 @@ const useStyles = makeStyles({
     ':hover': {
       backgroundColor: 'inherit',
     },
+  },
+  emptyRow: {
+    height: '66px',
   },
   title: {
     height: '32px',
@@ -245,7 +249,13 @@ export default function DataTable<T extends TableData>({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {rows.map(r => (
+          {rows.length === 0 ? (
+            <TableRow className={styles.emptyRow}>
+              <TableCell className='text-center' colSpan={spanAllColumns}>
+                <Body1Strong>No hay datos para mostrar</Body1Strong>
+              </TableCell>
+            </TableRow>
+          ) : rows.map(r => (
             <Fragment key={r.id}>
               <TableRow className={styles.bodyRow} appearance={selected.some(s => s.id === r.id) ? 'brand' : 'none'}>
                 {getRowActions && (
