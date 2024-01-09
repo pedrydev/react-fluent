@@ -15,29 +15,24 @@ import SplashScreenContent from './layout/splash-screen/SplashScreenContent.tsx'
 import AppServiceProvider from './AppServiceProvider.tsx';
 import './core/styles/tailwindcss.css';
 import './core/styles/reset.css';
+import buildProvidersTree from '@/core/providers/buildProvidersTree.tsx';
+
+const Providers = buildProvidersTree([
+  [Theme],
+  [FeatureProvider],
+  [AppServiceProvider],
+  [QueryProvider],
+  [ToastProvider],
+  [SplashScreen],
+  [Suspense, { fallback: <SplashScreenContent /> }],
+  [I18n],
+  [AuthProvider],
+  [HelpPathProvider],
+  [RootTrack, { appId: 'react-fluent-ui' }],
+]);
 
 createRoot(document.getElementById('root') as HTMLElement).render(
-  <Theme>
-    <FeatureProvider>
-      <AppServiceProvider>
-        <QueryProvider>
-          <ToastProvider>
-            <Suspense fallback={<SplashScreenContent />}>
-              <SplashScreen>
-                <I18n>
-                  <AuthProvider>
-                    <HelpPathProvider>
-                      <RootTrack appId='react-fluent-ui'>
-                        <Routes />
-                      </RootTrack>
-                    </HelpPathProvider>
-                  </AuthProvider>
-                </I18n>
-              </SplashScreen>
-            </Suspense>
-          </ToastProvider>
-        </QueryProvider>
-      </AppServiceProvider>
-    </FeatureProvider>
-  </Theme>,
+  <Providers>
+    <Routes />
+  </Providers>,
 );
