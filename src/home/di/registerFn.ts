@@ -1,15 +1,16 @@
 import { DependencyContainer } from 'tsyringe';
-import HttpClient from '@/core/services/HttpClient.ts';
-import JsonPlaceholderTodoService from '@/home/services/JsonPlaceholderTodoService.ts';
+import BaseHttpClient from '@/core/services/BaseHttpClient.ts';
+import AxiosClient from '@/core/services/AxiosClient.ts';
 
-const httpClient = new HttpClient({
-  url: 'https://jsonplaceholder.typicode.com',
+const httpClient: BaseHttpClient = new AxiosClient({
+  getToken: () => Promise.resolve('fakewotoken'),
+  timeout: 3000,
+  baseUrl: 'https://jsonplaceholder.typicode.com',
 });
 
 const registerFn = (container: DependencyContainer) => {
   container
-    .registerInstance<HttpClient>(HttpClient, httpClient)
-    .registerSingleton<JsonPlaceholderTodoService>(JsonPlaceholderTodoService);
+    .registerInstance(BaseHttpClient.InjectionToken, httpClient)
 };
 
 export default registerFn;

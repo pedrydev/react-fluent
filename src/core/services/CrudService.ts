@@ -1,35 +1,33 @@
-import ApiResponseModel from "@/core/models/ApiResponseModel.ts";
-import PaginatedResponseModel from "@/core/models/PaginatedResponseModel.ts";
-import HttpClient from "@/core/services/HttpClient.ts";
+import BaseHttpClient, { HttpPostData } from '@/core/services/BaseHttpClient.ts';
 
-export default class CrudService<TModel, TCreationModel> {
+export default class CrudService<T> {
   protected baseUrl = ""; // Must be defined
 
-  constructor(protected readonly http: HttpClient) {
+  constructor(protected readonly http: BaseHttpClient) {
   }
 
-  create(data: TCreationModel): Promise<ApiResponseModel<unknown>> {
-    return this.http.post({ data, url: this.baseUrl });
+  create<TPost extends HttpPostData>(data: TPost) {
+    return this.http.post<T>({ data, url: this.baseUrl });
   }
 
-  delete(id: string): Promise<ApiResponseModel<unknown>> {
-    return this.http.delete({ url: `${this.baseUrl}/${id}` });
+  delete(id: string) {
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  getAll(query: any): Promise<PaginatedResponseModel<TModel>> {
+  getAll(query: any) {
     return this.http.get({ query, url: `${this.baseUrl}` });
   }
 
-  getByIds(ids: string[]): Promise<ApiResponseModel<TModel[]>> {
+  getByIds(ids: string[]) {
     const idsParam = ids.map(id => `id=${id}`).join("&");
     return this.http.get({ url: `${this.baseUrl}/ids/${idsParam}` });
   }
 
-  getOne(id: string): Promise<ApiResponseModel<TModel>> {
+  getOne(id: string) {
     return this.http.get({ url: `${this.baseUrl}/${id}` });
   }
 
-  update(id: string, data: TCreationModel): Promise<ApiResponseModel<unknown>> {
+  update<TPut extends HttpPostData>(id: string, data: TPut) {
     return this.http.put({ data, url: `${this.baseUrl}/${id}` });
   }
 }
