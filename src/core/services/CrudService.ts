@@ -1,4 +1,4 @@
-import BaseHttpClient, { HttpPostData } from '@/core/services/BaseHttpClient.ts';
+import BaseHttpClient, { HttpPostData } from '@/core/http/BaseHttpClient.ts';
 
 export default class CrudService<T> {
   protected baseUrl = ""; // Must be defined

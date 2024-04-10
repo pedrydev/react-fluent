@@ -4,8 +4,8 @@ import BaseHttpClient, {
   BaseHttpClientOptions,
   HttpGetOptions,
   HttpPostOptions,
-} from '@/core/services/BaseHttpClient.ts';
-import ApiResponseModel from '../models/ApiResponseModel';
+} from '@/core/http/BaseHttpClient.ts';
+import ApiResponseModel from '../models/ApiResponseModel.ts';
 
 export interface FetchHttpClientOptions extends BaseHttpClientOptions {
   headers?: HeadersInit

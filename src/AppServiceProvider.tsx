@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { RootServiceProvider } from '@/core/providers/ServiceProvider.tsx';
-import HomeServiceProvider from '@/home/di/HomeServiceProvider.tsx';
+import { HttpClientProvider } from '@/core/http/HttpClientProvider.tsx';
 
 /**
  *
@@ -13,9 +13,9 @@ import HomeServiceProvider from '@/home/di/HomeServiceProvider.tsx';
 export default function AppServiceProvider({ children }: PropsWithChildren) {
   return (
     <RootServiceProvider>
-      <HomeServiceProvider>
-        {children}
-      </HomeServiceProvider>
+      <HttpClientProvider>
+          {children}
+      </HttpClientProvider>
     </RootServiceProvider>
   );
 }

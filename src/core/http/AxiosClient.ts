@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, CreateAxiosDefaults } from 'axios';
+import axios, { AxiosInstance, AxiosResponse, CreateAxiosDefaults, InternalAxiosRequestConfig } from 'axios';
 import qs from 'qs'
 import { Lifecycle, scoped } from "tsyringe";
 import ApiResponseModel from '@/core/models/ApiResponseModel.ts';
@@ -6,9 +6,9 @@ import BaseHttpClient, {
   BaseHttpClientOptions,
   HttpGetOptions,
   HttpPostOptions,
-} from '@/core/services/BaseHttpClient.ts';
+} from '@/core/http/BaseHttpClient.ts';
 
-export interface AxiosClientOptions extends BaseHttpClientOptions {
+export interface AxiosClientOptions extends Omit<BaseHttpClientOptions, 'getToken'> {
   headers?: CreateAxiosDefaults['headers'];
 }
 
@@ -16,7 +16,7 @@ export interface AxiosClientOptions extends BaseHttpClientOptions {
 export default class AxiosClient extends BaseHttpClient {
   private readonly axios: AxiosInstance;
 
-  constructor({ getToken, headers = {}, timeout, baseUrl }: AxiosClientOptions) {
+  constructor({ headers = {}, timeout, baseUrl }: AxiosClientOptions) {
     super()
     this.axios = axios.create({
       baseURL: baseUrl,
@@ -25,10 +25,14 @@ export default class AxiosClient extends BaseHttpClient {
       responseType: 'json',
       timeout
     })
-    this.axios.interceptors.request.use(async config => {
-      config.headers.set('Authorization', await getToken())
-      return config
-    })
+  }
+
+  addRequestInterceptor(interceptor: (value: InternalAxiosRequestConfig<any>) => InternalAxiosRequestConfig<any> | Promise<InternalAxiosRequestConfig<any>>) {
+    this.axios.interceptors.request.use(interceptor)
+  }
+
+  addResponseInterceptor(interceptor: (value: AxiosResponse<any, any>) => AxiosResponse<any, any> | Promise<AxiosResponse<any, any>>) {
+    this.axios.interceptors.response.use(interceptor)
   }
 
   async delete(url: string) {

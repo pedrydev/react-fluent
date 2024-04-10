@@ -1,27 +1,16 @@
 import { Button, Label, Radio, RadioGroup, RadioGroupProps, ToastIntent } from '@fluentui/react-components';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TrackEvent from '@/core/track/TrackEvent.tsx';
-import { useService } from '@/core/providers/ServiceProvider.tsx';
-import LoggerService from '@/core/services/LoggerService.ts';
 import useToast from '@/core/feedback/useToast.ts';
-import JsonPlaceholderTodoService from '@/home/services/JsonPlaceholderTodoService.ts';
 import { useFeatures } from '@/core/providers/FeatureProvider.tsx';
 
 export default function HomeIndex() {
   const toast = useToast();
-  const service = useService(JsonPlaceholderTodoService);
-  const logger = useService(LoggerService);
   const [intent, setIntent] = useState<ToastIntent>('success');
   const features = useFeatures();
 
-  useEffect(() => {
-    service.getOne('1').then(res => {
-      logger.logInfo(res);
-    });
-  }, []);
-
   const handleRadioChange: RadioGroupProps['onChange'] = (_, data) => {
-    setIntent(data.value);
+    setIntent(data.value as ToastIntent);
   };
 
   return (
