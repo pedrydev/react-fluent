@@ -1,4 +1,3 @@
-import { injectable } from 'tsyringe';
 import Keycloak from 'keycloak-js';
 import AuthResultModel from '@/core/auth/models/AuthResultModel.ts';
 import OidcService from '@/core/auth/services/OidcService.ts';
@@ -9,20 +8,20 @@ const keycloak = new Keycloak({
   url: import.meta.env.VITE_APP_KEYCLOAK_URL,
 });
 
-@injectable()
-export default class KeycloakService extends OidcService {
-  private readonly validityBeforeTokenExpirationInSeconds = 30;
-  private keycloakInitalized = false;
+export default class KeycloakService implements OidcService {
+  private keycloakInitialized = false;
+
+  constructor(private readonly validityBeforeTokenExpirationInSeconds: number) {}
 
   async login(): Promise<AuthResultModel> {
     try {
-      if (!this.keycloakInitalized) {
+      if (!this.keycloakInitialized) {
         await keycloak.init({
           onLoad: 'login-required',
           redirectUri: window.location.origin,
           refreshToken: window.localStorage.getItem('rt') ?? undefined,
         });
-        this.keycloakInitalized = true;
+        this.keycloakInitialized = true;
       }
       if (!keycloak.authenticated)
         await keycloak.login();

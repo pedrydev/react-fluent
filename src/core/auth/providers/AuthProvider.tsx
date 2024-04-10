@@ -1,12 +1,13 @@
+import { Body1 } from '@fluentui/react-components';
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import AuthFunctionsModel from '@/core/auth/models/AuthFunctionsModel.ts';
 import UserModel from '@/core/auth/models/UserModel.ts';
-import { useService } from '@/core/providers/ServiceProvider.tsx';
-import OidcService from '@/core/auth/services/OidcService.ts';
-import { Body1 } from '@fluentui/react-components';
+import KeycloakService from '@/core/auth/services/KeycloakService.ts';
 
 const AuthFunctionsContext = createContext<AuthFunctionsModel>(null!);
 const UserContext = createContext<UserModel | undefined>(undefined);
+
+const oidcService = new KeycloakService(30)
 
 export default function AuthProvider({ children }: PropsWithChildren) {
   const [user, setUser] = useState<UserModel | undefined>();
@@ -16,11 +17,9 @@ export default function AuthProvider({ children }: PropsWithChildren) {
     },
   });
 
-  const service = useService(OidcService);
-
   useEffect(() => {
     async function init() {
-      const result = await service.login();
+      const result = await oidcService.login();
       if (result.success)
         setUser(result.user as UserModel);
     }
