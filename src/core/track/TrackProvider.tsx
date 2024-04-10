@@ -4,11 +4,9 @@ export interface RootTrackData {
   appId: string;
 }
 
-export interface TrackData {
-  [key: string]: string | number | boolean;
-}
+export type TrackedData = Record<string, string | number | boolean>
 
-const TrackContext = createContext<TrackData>(null!);
+const TrackContext = createContext<TrackedData>(null!);
 
 export function RootTrack({ appId, children }: PropsWithChildren<RootTrackData>) {
   return (
@@ -18,7 +16,7 @@ export function RootTrack({ appId, children }: PropsWithChildren<RootTrackData>)
   );
 }
 
-export function Track({ children, ...trackData }: PropsWithChildren<TrackData>) {
+export function Track({ children, ...trackData }: PropsWithChildren<TrackedData>) {
   const parentData = useContext(TrackContext) ?? {};
   const currentData = { ...parentData, ...trackData };
 

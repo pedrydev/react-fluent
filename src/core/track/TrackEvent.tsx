@@ -1,9 +1,9 @@
 import { cloneElement, ReactElement, SyntheticEvent } from 'react';
-import { TrackData, useTrackData } from '@/core/track/TrackProvider.tsx';
+import { TrackedData, useTrackData } from '@/core/track/TrackProvider.tsx';
 import TrackService from '@/core/track/TrackService.ts';
 import { useService } from '@/core/providers/ServiceProvider.tsx';
 
-export type TrackEventProps = Omit<TrackData, 'children'> & {
+export type TrackEventProps = Omit<TrackedData, 'children'> & {
   children: ReactElement;
   event: string;
 }
