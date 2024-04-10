@@ -13,7 +13,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
   const [user, setUser] = useState<UserModel | undefined>();
   const [functions] = useState<AuthFunctionsModel>({
     logout: () => {
-      setUser(undefined);
+      oidcService.logout()
     },
   });
 
